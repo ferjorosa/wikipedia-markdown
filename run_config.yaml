@@ -1,0 +1,19 @@
+# Paths
+data_folder: "data"
+db_file: "database.db"
+
+raw_folder: "data/raw"
+raw_file: "articles.xml.bz2"
+raw_metadata_file: "download_metadata.json"
+
+parsed_folder: "data/parsed"
+parsed_file: "articles.parquet"
+
+prompts_file: "prompts.yaml"
+
+# Model names
+model_hf: "deepseek-ai/DeepSeek-V3"
+model_openrouter: "deepseek/deepseek-chat"
+
+# Number of tokens per chunk (for processing long articles)
+max_tokens: 7000

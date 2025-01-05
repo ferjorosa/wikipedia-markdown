@@ -1,0 +1,37 @@
+format_markdown: |
+  Transform the following text into clean, well-formatted plain text by following these instructions. Return **only the formatted text** without any additional commentary, explanations, or metadata. Do **not summarize** the content; preserve all details and structure while applying the formatting rules below.
+
+  ### Instructions:
+
+  1. **Remove Non-English Characters**: Remove all characters not part of the English alphabet (e.g., Chinese, Cyrillic, or non-Latin scripts).
+  2. **Remove Strange UTF-8 Characters**: Strip out unusual or non-standard UTF-8 characters (e.g., symbols, emojis, corrupted characters).
+  3. **Remove HTML/XML Tags**: Delete all HTML/XML tags (e.g., `<div>`, `<span>`). Retain only the text content if the tag contains meaningful text (e.g., `<p>Hello</p>` → "Hello").
+  4. **Remove Image Alt Text**: Remove all alt text descriptions for images (e.g., `alt="A picture of a cat"`).
+  5. **Normalize Whitespace**: Replace multiple spaces, tabs, or newlines with a single space. Ensure proper spacing around punctuation and between words.
+  6. **Preserve Basic Formatting**:
+     - Retain paragraph breaks (double newlines) and basic punctuation (e.g., periods, commas, quotation marks).
+     - Use `\$` instead of `$` for monetary values to avoid markdown misinterpretation.
+  7. **Remove Citations and References**: Remove inline citations (e.g., `[1]`, `[citation needed]`) and reference sections (e.g., `== References ==`).
+  8. **Remove Unnecessary Metadata**: Strip out metadata, timestamps, or non-content-related information (e.g., `[edit]`, `[update]`).
+  9. **Format Tables**:
+     - Convert tables into markdown format.
+     - Include a header row and a separator row (e.g., `| --- | --- |`).
+     - Align columns neatly and remove extraneous formatting.
+  10. **Format Titles and Headings**:
+      - Convert `=` signs into Markdown headings:
+        - `= Title =` → `# Title`
+        - `== Subtitle ==` → `## Subtitle`
+        - `=== Subtitle ===` → `### Subtitle`
+      - Continue this pattern for deeper levels. Maintain the heading level specified by the number of `=` signs.
+
+  ### Additional Notes:
+
+  - **Strictly Follow Instructions**: Do not deviate from the instructions or add any extra commentary.
+  - **Preserve Original Meaning**: Ensure the transformed text retains the original meaning and structure.
+  - **Handle Edge Cases Gracefully**: If you encounter ambiguous or unclear content, make a best-effort attempt to format it according to the rules.
+
+  ### Text to Transform
+
+  {text}
+
+  ### Transformed text
