@@ -4,15 +4,12 @@ import pandas as pd
 from tqdm import tqdm
 from transformers import PreTrainedTokenizerFast
 
-from src.convert_to_markdown import (
-    convert_long_text_to_markdown,
-    convert_text_to_markdown,
-)
+from src.format_articles import convert_long_text_to_markdown, convert_text_to_markdown
 from src.utils.database import insert_row
 from src.utils.tokenizer import count_tokens
 
 
-def parallel_process_dataframe(
+def parallel_markdown_formatting(
     data: pd.DataFrame,
     model_openrouter: str,
     template: str,

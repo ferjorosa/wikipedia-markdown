@@ -1,4 +1,5 @@
 import bz2
+import re
 from pathlib import Path
 from time import sleep
 from typing import Dict, Iterator, Optional, Union
@@ -95,7 +96,12 @@ def _clean_article_text(article_text: str) -> str:
     # Get the cleaned text
     cleaned_text = str(soup)
 
-    return cleaned_text
+    # Add a newline after each title
+    final_text = re.sub(
+        r"={1,6}\s*([^=]+)\s*={1,6}", lambda match: match.group(0) + "\n", cleaned_text
+    )
+
+    return final_text
 
 
 def _iterate_articles(
@@ -178,7 +184,7 @@ def _count_pages_in_file(filename: Union[str, Path]) -> int:
 if __name__ == "__main__":
     # Define paths and target article ID
     raw_path = Path("../data/raw")
-    input_file = "simplewiki-latest-pages-articles-multistream.xml.bz2"
+    input_file = "articles.xml.bz2"
     input_path = raw_path / input_file
     output_path = Path("../data/processed/articles.parquet")
 

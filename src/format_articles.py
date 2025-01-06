@@ -194,7 +194,7 @@ def _divide_into_sections(text: str) -> list:
               related content.
     """
     # Regex to identify sections based on titles marked with `=` signs
-    section_regex = r"(={1,5}\s*[^=]+\s*={1,5})"
+    section_regex = r"(={1,6}\s*[^=]+\s*={1,6})"
 
     # Split the text into sections using the regex
     sections = re.split(section_regex, text)
