@@ -34,13 +34,13 @@ The club finished in 8th place in the 1969–70 season. It had a bad start to th
 
 Dave Sexton became the new manager in the summer of 1977. He signed the famous players Joe Jordan, Gordon McQueen, Gary Bailey, and Ray Wilkins. However, the team did not have great results. It finished in the top two in 1979–80. It lost against Arsenal in the 1979 FA Cup Final. Sexton was sacked in 1981, even though the team won the last seven games when he was the manager. Ron Atkinson replaced him. He broke the British record transfer fee (the money used to buy a player) to sign Bryan Robson from West Bromwich Albion. Under Atkinson, Manchester United won the FA Cup twice in three years – in 1983 and 1985. In 1985–86, the club was favourite to win the league after 13 wins and two draws in its first 15 matches. However, they only finished the season in fourth place. Atkinson was sacked the year after, because the club was already in danger of relegation by November.
 
-### Ferguson years (1986–2013)
+## Ferguson years (1986–2013)
 
 # Alex Ferguson and his assistant Archie Knox arrived from Aberdeen on the day of Atkinson's left. They guided the club to an 11th-place finish in the league. They finished second in 1987–88, but the club was back in 11th place the season after. Reports say Ferguson almost lost his job. A win against Crystal Palace in the 1990 FA Cup Final replay (after a 3–3 draw) saved Ferguson's career. The season after this, Manchester United won its first Cup Winners' Cup title. It also played in the 1991 UEFA Super Cup. It beat European Cup holders (the champions from the year before) Red Star Belgrade 1–0 in the final at Old Trafford. In 1992, United played in another League Cup final. The club beat Nottingham Forest 1–0 at Wembley. In 1993, Manchester United won its first league title since 1967. A year later, for the first time since 1957, it won a second title in a row. It also won the FA Cup. This means the team completed the first "Double" in the club's history. United then became the first English club to win the Double twice. It won both competitions again in 1995–96. In 1996–97, it won the league again, one game before the end of the season.
 
 In the 1998–99 season, Manchester United became the first team to win the Premier League, FA Cup and UEFA Champions League – "The Treble" – in the same season. The team was losing 1–0 going into injury time in the 1999 UEFA Champions League Final. Teddy Sheringham and Ole Gunnar Solskjær scored late goals to claim a dramatic victory against Bayern Munich. It is remembered as one of the greatest comebacks (when you were losing and came back to win) of all time. The club also won the Intercontinental Cup. It beat Palmeiras 1–0 in Tokyo. Ferguson was then knighted for his services to football. He became Sir Alex Ferguson.
 
-Manchester United won the league again in the 1999–2000 and 2000–01 seasons. The team finished third in 2001–02. It won the title again in 2002–03. It won the 2003–04 FA Cup. United beat Millwall 3–0 in the final at the Millennium Stadium in Cardiff. It won the trophy for a record 11th time. In the 2005–06 season, Manchester United did not play in the knockout phase of the UEFA Champions League. This was the first time in over ten years. The club still managed to finish second in the league. It also won the 2006 Football League Cup Final against Wigan Athletic. The club won the Premier League again in the 2006–07 season. In 2007–08, it won the European double. United won a penalty shootout 6–5 against Chelsea in the 2008 UEFA Champions League Final in Moscow and won its 17th English league title. In that season, Ryan Giggs played a record 759th game for the club. This was more than the old record of Bobby Charlton. In December 2008, the club won the 2008 FIFA Club World Cup. It then won the 2008–09 Football League Cup. Later that year, United won a third Premier League title in a row. In the summer of 2009, United sold Cristiano Ronaldo to Real Madrid for a world record \$80 million. In 2010, Manchester United beat Aston Villa 2–1 at Wembley to win the League Cup again. This was the first time it defended (won again the next year) a knockout cup competition.
+Manchester United won the league again in the 1999–2000 and 2000–01 seasons. The team finished third in 2001–02. It won the title again in 2002–03. It won the 2003–04 FA Cup. United beat Millwall 3–0 in the final at the Millennium Stadium in Cardiff. It won the trophy for a record 11th time. In the 2005–06 season, Manchester United did not play in the knockout phase of the UEFA Champions League. This was the first time in over ten years. The club still managed to finish second in the league. It also won the 2006 Football League Cup Final against Wigan Athletic. The club won the Premier League again in the 2006–07 season. In 2007–08, it won the European double. United won a penalty shootout 6–5 against Chelsea in the 2008 UEFA Champions League Final in Moscow and won its 17th English league title. In that season, Ryan Giggs played a record 759th game for the club. This was more than the old record of Bobby Charlton. In December 2008, the club won the 2008 FIFA Club World Cup. It then won the 2008–09 Football League Cup. Later that year, United won a third Premier League title in a row. In the summer of 2009, United sold Cristiano Ronaldo to Real Madrid for a world record £80 million. In 2010, Manchester United beat Aston Villa 2–1 at Wembley to win the League Cup again. This was the first time it defended (won again the next year) a knockout cup competition.
 
 The club finished second behind Chelsea in the 2009–10 season. In 2010–11, United won a record 19th league title. It won the league with a 1–1 away (at the opponent's stadium) draw against Blackburn Rovers on 14 May 2011. It made this 20 league titles in 2012–13. It won the league with a 3–0 home (at their own stadium) win against Aston Villa on 22 April 2013.
 
@@ -138,22 +138,22 @@ When a club finishes in a better position in the league it gets more money from 
 
 ## Sponsorship
 
-| Period       | Kit manufacturer | Shirt sponsor (chest) | Shirt sponsor (sleeve) |
-| ------------ | ---------------- | --------------------- | ---------------------- |
-| 1945–1975    | Umbro            | —                     | —                      |
-| 1975–1980    | Admiral          |                       |                        |
-| 1980–1982    | Adidas           |                       |                        |
-| 1982–1992    | Sharp Electronics |                       |                        |
-| 1992–2000    | Umbro            |                       |                        |
-| 2000–2002    | Vodafone         |                       |                        |
-| 2002–2006    | Nike             |                       |                        |
-| 2006–2010    | AIG              |                       |                        |
-| 2010–2014    | Aon              |                       |                        |
-| 2014–2015    | Chevrolet        |                       |                        |
-| 2015–2018    | Adidas           |                       |                        |
-| 2018–2021    | Kohler           |                       |                        |
-| 2021–2022    | TeamViewer       |                       |                        |
-| 2022–        | TeamViewer       | DXC Technology        |                        |
+| Period      | Kit Manufacturer | Shirt Sponsor (Chest) | Shirt Sponsor (Sleeve) |
+| ----------- | ---------------- | --------------------- | ---------------------- |
+| 1945–1975   | Umbro            | —                     | —                      |
+| 1975–1980   | Admiral          |                       |                        |
+| 1980–1982   | Adidas           |                       |                        |
+| 1982–1992   | Sharp Electronics|                       |                        |
+| 1992–2000   | Umbro            |                       |                        |
+| 2000–2002   | Vodafone         |                       |                        |
+| 2002–2006   | Nike             |                       |                        |
+| 2006–2010   | AIG              |                       |                        |
+| 2010–2014   | Aon              |                       |                        |
+| 2014–2015   | Chevrolet        |                       |                        |
+| 2015–2018   | Adidas           |                       |                        |
+| 2018–2021   | Kohler           |                       |                        |
+| 2021–2022   | TeamViewer       |                       |                        |
+| 2022–       | TeamViewer       | DXC Technology        |                        |
 
 Sharp Electronics was the club's first shirt sponsor. They first signed a five-year deal worth £500,000. This was at the beginning of the 1982–83 season. This relationship lasted until the end of the 1999–2000 season. In 2000, Vodafone agreed a four-year, £30 million deal. Vodafone then agreed to pay £36 million to make the deal four years longer. However, after two seasons it stopped being the sponsor to focus on its sponsorship of the Champions League.
 
@@ -173,9 +173,9 @@ Manchester United was floated on the stock market in June 1991 (raising £6.7 mi
 
 In May 2005, Malcolm Glazer bought the 28.7 percent stake from McManus and Magnier. This meant he had a controlling interest through his company Red Football Ltd. He borrowed a lot of money to buy the club and become the owner. The club's value was about £800 million (at the time about \$1.5 billion). After this, the club was not on the stock exchange anymore. In July 2006, the club announced a £660 million debt refinancing package (deal). This meant there was 30 percent less interest to pay every year. It was then about £62 million a year. In January 2010, the club had debts of £716.5 million (\$1.17 billion). Manchester United refinanced more through a bond issue worth £504 million. This meant the club could pay most of the £509 million it owed to international banks. The club had to pay interest of about £45 million per year on the bonds. The bonds were to mature on 1 February 2017. The club's debt made fans angry. They staged a protest on 23 January 2010, at Old Trafford and at the club's Trafford Training Centre. Supporter groups told fans who went to the match to wear green and gold, the colours of Newton Heath. On 30 January, reports said that the Manchester United Supporters' Trust had held meetings with a group of rich fans. These fans were nicknamed the "Red Knights". They had plans to buy the club from the Glazers.
 
-In August 2011, reports said the Glazers went to Credit Suisse to start a \$1 billion (approx. £600 million) initial public offering (IPO) on the Singapore stock exchange. This meant the value of the club would be more than £2 billion. However, in July 2012, the club announced plans to list its IPO on the New York Stock Exchange instead. The share price was going to be between \$16 and \$20 each. The price fell to \$14 by the launch of the IPO on 10 August. This was because of bad comments from Wall Street analysts. It was also because Facebook had a bad start on the stock market in May 2012. Even with the lower share price, Manchester United was valued at \$2.3 billion. This made it the most valuable football club in the world.
+In August 2011, reports said the Glazers went to Credit Suisse to start a \$1 billion (approx. £600 million) initial public offering (IPO) on the Singapore stock exchange. This meant the value of the club would be more than £2 billion. However, in July 2012, the club announced plans to list its IPO on the New York Stock Exchange instead. The share price was going to be between \$16 and \$20 each. The price fell to \$14 by the launch of the IPO on 10 August. This was because of bad comments from Wall Street analysts. It was also because Facebook had a bad start on the stock market in May 2012. Even with the lower share price, Manchester United was valued at \$2.3 billion. This made is most valuable football club in the world.
 
-There are two different types of shares for the club. The people who own the shares have different voting rights (to make decisions) at the club. The public have "Class A" shares. These shares have 10 times lesser voting rights than the Glazers own. Those shares are called "Class B" shares. At the start in 2012, the public could only buy 10% of the shares. As of 2019, the Glazers still had control over the club. They had over 70% of shares. They had even higher voting power.
+There are two different types of shares for the club. The people who own the shares have different voting rights (to make decisions) at the club. The public have "Class A" share. These shares have 10 times lesser voting rights than the Glazers own. Those shares are called "Class B" shares. At the start in 2012, the public could only buy 10% of the shares. As of 2019, the Glazers still had control over the club. They had over 70% of shares. They had even higher voting power.
 
 In 2012, The Guardian estimated that the club had paid over £500 million in debt interest and other fees for the Glazers. In 2019, The Guardian reported that this sum was now £1 billion. At the end of 2019, the club had a net debt of nearly £400 million.
 
@@ -194,71 +194,71 @@ On 24 December 2023, the club said that Ratcliffe had bought 25 per cent of Manc
 | Team       | First team                             | U21s                               | U18s                                          |
 |------------|----------------------------------------|------------------------------------|-----------------------------------------------|
 | Award      | Sir Matt Busby Player of the Year      | Players' Player of the Year        | Denzil Haroun Reserve Team Player of the Year | Jimmy Murphy Young Player of the Year |
-| Inaugurated| 1987–88                                | 2005–06                            | 1989–90                                       | 1989–90                                |
+| Inaugurated | 1987–88                                | 2005–06                            | 1989–90                                       | 1989–90                                |
 | Holder     | Bruno Fernandes                        | Diogo Dalot                        | Elyh Harrison                                 | Ethan Wheatly                          |
 
 # Coaching staff
 
-| Position                                           | Staff                          |
-|----------------------------------------------------|--------------------------------|
-| Manager                                            | Ruben Filipe Marques Amorim    |
-| Assistant coaches                                  | Carlos Fernandes               |
-|                                                    | Adelio Candido                 |
-|                                                    | Emanuel Ferro                  |
-| First-team coaches                                 | Darren Fletcher                |
-|                                                    | Benni McCarthy                 |
-| Senior goalkeeping coach                           | Richard Hartis                 |
-|                                                    | Jorge Vital                    |
-| Assistant goalkeeping coach                        | Craig Mawson                   |
-| Head of sports medicine (first-team doctor)        | Gary O'Driscoll                |
-| Head of rehabilitation and physiotherapy           | Vacant                         |
-| First-team lead physio                             | Richard Merron                 |
-| Head of physical performance                       | Ed Leng                        |
-| Fitness coaches                                    | Paulo Gaudino                  |
-|                                                    | Charlie Owen                   |
-| First-team strength and power coach                | Michael Clegg                  |
-| First-team sports scientist                        | Michael Eglon                  |
-|                                                    | Paulo Barreira                 |
-| Director of academy                                | Nick Cox                       |
-| Head of player development & coaching (U19–U23)    | Travis Binnion                 |
-| Under-21s lead coach                               |                                |
-| Under-18s lead coach                               | Adam Lawrence                  |
-| Senior academy coach                               | Mark Dempsey                   |
+| Position                                            | Staff                          |
+|-----------------------------------------------------|--------------------------------|
+| Manager                                             | Ruben Filipe Marques Amorim    |
+| Assistant coaches                                   | Carlos Fernandes               |
+|                                                     | Adelio Candido                 |
+|                                                     | Emanuel Ferro                  |
+| First-team coaches                                  | Darren Fletcher                |
+|                                                     | Benni McCarthy                 |
+| Senior goalkeeping coach                            | Richard Hartis                 |
+|                                                     | Jorge Vital                    |
+| Assistant goalkeeping coach                         | Craig Mawson                   |
+| Head of sports medicine (first-team doctor)         | Gary O'Driscoll                |
+| Head of rehabilitation and physiotherapy            | Vacant                         |
+| First-team lead physio                              | Richard Merron                 |
+| Head of physical performance                        | Ed Leng                        |
+| Fitness coaches                                     | Paulo Gaudino                  |
+|                                                     | Charlie Owen                   |
+| First-team strength and power coach                 | Michael Clegg                  |
+| First-team sports scientist                         | Michael Eglon                  |
+|                                                     | Paulo Barreira                 |
+| Director of academy                                 | Nick Cox                       |
+| Head of player development & coaching (U19–U23)     | Travis Binnion                 |
+| Under-21s lead coach                                |                                |
+| Under-18s lead coach                                | Adam Lawrence                  |
+| Senior academy coach                                | Mark Dempsey                   |
 
 ## Managerial history
 
-| Dates          | Name                | Notes                     |
-|----------------|---------------------|---------------------------|
-| 1878–1892      | Unknown             |                           |
-| 1892–1900      | A. H. Albut         |                           |
-| 1900–1903      | James West          |                           |
-| 1903–1912      | Ernest Mangnall     |                           |
-| 1912–1914      | John Bentley        |                           |
-| 1914–1921      | Jack Robson         |                           |
-| 1921–1926      | John Chapman        |                           |
-| 1926–1927      | Lal Hilditch        | Player-manager            |
-| 1927–1931      | Herbert Bamlett     |                           |
-| 1931–1932      | Walter Crickmer     |                           |
-| 1932–1937      | Scott Duncan        |                           |
-| 1937–1945      | Walter Crickmer     |                           |
-| 1945–1969      | Matt Busby          |                           |
-| 1958           | Jimmy Murphy        | Caretaker manager         |
-| 1969–1970      | Wilf McGuinness     |                           |
-| 1970–1971      | Matt Busby          |                           |
-| 1971–1972      | Frank O'Farrell     |                           |
-| 1972–1977      | Tommy Docherty      |                           |
-| 1977–1981      | Dave Sexton         |                           |
-| 1981–1986      | Ron Atkinson        |                           |
-| 1986–2013      | Alex Ferguson       |                           |
-| 2013–2014      | David Moyes         |                           |
-| 2014           | Ryan Giggs          | Caretaker player-manager  |
-| 2014–2016      | Louis van Gaal      |                           |
-| 2016–2018      | José Mourinho       |                           |
-| 2018–2021      | Ole Gunnar Solskjær |                           |
-| 2021           | Michael Carrick     | Caretaker manager         |
-| 2021–2022      | Ralf Rangnick       | Interim manager           |
-| 2022–2024      | Erik ten Hag        |                           |
-| 2024-          | Ruben Amorim        |                           |
+| Dates         | Name                | Notes                     |
+|---------------|---------------------|---------------------------|
+| 1878–1892     | Unknown             |                           |
+| 1892–1900     | A. H. Albut         |                           |
+| 1900–1903     | James West          |                           |
+| 1903–1912     | Ernest Mangnall     |                           |
+| 1912–1914     | John Bentley        |                           |
+| 1914–1921     | Jack Robson         |                           |
+| 1921–1926     | John Chapman        |                           |
+| 1926–1927     | Lal Hilditch        | Player-manager            |
+| 1927–1931     | Herbert Bamlett     |                           |
+| 1931–1932     | Walter Crickmer     |                           |
+| 1932–1937     | Scott Duncan        |                           |
+| 1937–1945     | Walter Crickmer     |                           |
+| 1945–1969     | Matt Busby          |                           |
+| 1958          | Jimmy Murphy        | Caretaker manager         |
+| 1969–1970     | Wilf McGuinness     |                           |
+| 1970–1971     | Matt Busby          |                           |
+| 1971–1972     | Frank O'Farrell     |                           |
+| 1972–1977     | Tommy Docherty      |                           |
+| 1977–1981     | Dave Sexton         |                           |
+| 1981–1986     | Ron Atkinson        |                           |
+| 1986–2013     | Alex Ferguson       |                           |
+| 2013–2014     | David Moyes         |                           |
+| 2014          | Ryan Giggs          | Caretaker player-manager  |
+| 2014–2016     | Louis van Gaal      |                           |
+| 2016–2018     | José Mourinho       |                           |
+| 2018–2021     | Ole Gunnar Solskjær |                           |
+| 2021          | Michael Carrick     | Caretaker manager         |
+| 2021–2022     | Ralf Rangnick       | Interim manager           |
+| 2022–2024     | Erik ten Hag        |                           |
+| 2024-         | Ruben Amorim        |                           |
 
 # Management
 
@@ -266,41 +266,41 @@ On 24 December 2023, the club said that Ratcliffe had bought 25 per cent of Manc
 
 ## Manchester United plc
 
-| Position                                                                  | Name                        |
-|---------------------------------------------------------------------------|-----------------------------|
-| Co-chairmen                                                               | Avram Glazer                |
-|                                                                           | Joel Glazer                 |
-| Interim chief executive officer and chief legal officer / general counsel | Patrick Stewart             |
-| Chief financial officer                                                   | Cliff Baty                  |
-| Chief operating officer                                                   | Collette Roche              |
-| Non-executive directors                                                   | Bryan Glazer                |
-|                                                                           | Kevin Glazer                |
-|                                                                           | Edward Glazer               |
-|                                                                           | Darcie Glazer Kassewitz     |
-|                                                                           | Robert Leitão               |
-|                                                                           | John Hooks                  |
-|                                                                           | Rob Nevin                   |
-|                                                                           | John Reece                  |
-|                                                                           | Manu Sawhney                |
+| Position                                                                  | Name                          |
+|---------------------------------------------------------------------------|-------------------------------|
+| Co-chairmen                                                               | Avram Glazer                  |
+|                                                                           | Joel Glazer                   |
+| Interim chief executive officer and chief legal officer / general counsel | Patrick Stewart               |
+| Chief financial officer                                                   | Cliff Baty                    |
+| Chief operating officer                                                   | Collette Roche                |
+| Non-executive directors                                                   | Bryan Glazer                  |
+|                                                                           | Kevin Glazer                  |
+|                                                                           | Edward Glazer                 |
+|                                                                           | Darcie Glazer Kassewitz       |
+|                                                                           | Robert Leitão                 |
+|                                                                           | John Hooks                    |
+|                                                                           | Rob Nevin                     |
+|                                                                           | John Reece                    |
+|                                                                           | Manu Sawhney                  |
 
 ## Manchester United Football Club
 
-| Office                                         | Name                        |
-|------------------------------------------------|-----------------------------|
-| Honorary president                             | Martin Edwards              |
-| Directors                                      | Dave Brailsford             |
-|                                                | Jean-Claude Blanc           |
-|                                                | David Gill                  |
-|                                                | Michael Edelson             |
-|                                                | Sir Alex Ferguson           |
-| Football director                              | Vacant                      |
-| Deputy football director                       | Andy O'Boyle                |
-| Technical director                             | Jason Wilcox                |
-| Director of football negotiations              | Matt Hargreaves             |
-| Director of football operations                | David Harrison              |
-| Club secretary                                 | Rebecca Britain             |
-| Director of football insights & innovation     | Richard Hawkins             |
-| Director of data science                       | Dominic Jordan              |
+| Office                                         | Name                          |
+|------------------------------------------------|-------------------------------|
+| Honorary president                             | Martin Edwards                |
+| Directors                                      | Dave Brailsford               |
+|                                                | Jean-Claude Blanc             |
+|                                                | David Gill                    |
+|                                                | Michael Edelson               |
+|                                                | Sir Alex Ferguson             |
+| Football director                              | Vacant                        |
+| Deputy football director                       | Andy O'Boyle                  |
+| Technical director                             | Jason Wilcox                  |
+| Director of football negotiations              | Matt Hargreaves               |
+| Director of football operations                | David Harrison                |
+| Club secretary                                 | Rebecca Britain               |
+| Director of football insights & innovation     | Richard Hawkins               |
+| Director of data science                       | Dominic Jordan                |
 
 # Honours
 
@@ -316,32 +316,31 @@ The club's won its 2022–23 EFL Cup in February 2023. Its most recent trophy is
 
 ## Manchester United's honours
 
-| Type          | Competition                                                                 | Titles | Seasons                                                                 |
-|---------------|-----------------------------------------------------------------------------|--------|-------------------------------------------------------------------------|
-| Domestic      | First Division/Premier League                                              | 20     | 1907–08, 1910–11, 1951–52, 1955–56, 1956–57, 1964–65, 1966–67, 1992–93, 1993–94, 1995–96, 1996–97, 1998–99, 1999–2000, 2000–01, 2002–03, 2006–07, 2007–08, 2008–09, 2010–11, 2012–13 |
-|               | Second Division                                                            | 2      | 1935–36, 1974–75                                                       |
-|               | FA Cup                                                                     | 13     | 1908–09, 1947–48, 1962–63, 1976–77, 1982–83, 1984–85, 1989–90, 1993–94, 1995–96, 1998–99, 2003–04, 2015–16, 2023–24 |
-|               | Football League Cup/EFL Cup                                                | 6      | 1991–92, 2005–06, 2008–09, 2009–10, 2016–17, 2022–23                   |
-|               | FA Charity Shield/FA Community Shield                                      | 21     | 1908, 1911, 1952, 1956, 1957, 1965*, 1967*, 1977*, 1983, 1990*, 1993, 1994, 1996, 1997, 2003, 2007, 2008, 2010, 2011, 2013, 2016 (* shared) |
-| Continental   | European Cup/UEFA Champions League                                         | 3      | 1967–68, 1998–99, 2007–08                                              |
-|               | European Cup Winners' Cup                                                  | 1      | 1990–91                                                                |
-|               | UEFA Europa League                                                         | 1      | 2016–17                                                                |
-|               | UEFA Super Cup                                                             | 1      | 1991                                                                   |
-| Worldwide     | FIFA Club World Cup                                                        | 1      | 2008                                                                   |
-|               | Intercontinental Cup                                                       | 1      | 1999                                                                   |
+| Type         | Competition                                                                 | Titles | Seasons                                                                 |
+|--------------|-----------------------------------------------------------------------------|--------|-------------------------------------------------------------------------|
+| Domestic     | First Division/Premier League                                               | 20     | 1907–08, 1910–11, 1951–52, 1955–56, 1956–57, 1964–65, 1966–67, 1992–93, 1993–94, 1995–96, 1996–97, 1998–99, 1999–2000, 2000–01, 2002–03, 2006–07, 2007–08, 2008–09, 2010–11, 2012–13 |
+|              | Second Division                                                             | 2      | 1935–36, 1974–75                                                        |
+|              | FA Cup                                                                     | 13     | 1908–09, 1947–48, 1962–63, 1976–77, 1982–83, 1984–85, 1989–90, 1993–94, 1995–96, 1998–99, 2003–04, 2015–16, 2023–24 |
+|              | Football League Cup/EFL Cup                                                | 6      | 1991–92, 2005–06, 2008–09, 2009–10, 2016–17, 2022–23                    |
+|              | FA Charity Shield/FA Community Shield                                      | 21     | 1908, 1911, 1952, 1956, 1957, 1965*, 1967*, 1977*, 1983, 1990*, 1993, 1994, 1996, 1997, 2003, 2007, 2008, 2010, 2011, 2013, 2016 (* shared) |
+| Continental  | European Cup/UEFA Champions League                                         | 3      | 1967–68, 1998–99, 2007–08                                               |
+|              | European Cup Winners' Cup                                                  | 1      | 1990–91                                                                 |
+|              | UEFA Europa League                                                         | 1      | 2016–17                                                                 |
+|              | UEFA Super Cup                                                             | 1      | 1991                                                                    |
+| Worldwide    | FIFA Club World Cup                                                        | 1      | 2008                                                                    |
+|              | Intercontinental Cup                                                       | 1      | 1999                                                                    |
 
 * shared record
 
 ## Doubles and Trebles
 
-### Doubles
-- League and FA Cup (3): 1993–94, 1995–96, 1998–99
-- League and UEFA Champions League (2): 1998–99, 2007–08
-- League and EFL Cup (1): 2008–09
-- EFL Cup and UEFA Europa League (1): 2016–17
-
-### Trebles
-- League, FA Cup and UEFA Champions League (1): 1998–99
+- Doubles
+  - League and FA Cup (3): 1993–94, 1995–96, 1998–99
+  - League and UEFA Champions League (2): 1998–99, 2007–08
+  - League and EFL Cup (1): 2008–09
+  - EFL Cup and UEFA Europa League (1): 2016–17
+- Trebles
+  - League, FA Cup and UEFA Champions League (1): 1998–99
 
 Short competitions – such as the FA Charity/Community Shield, Intercontinental Cup (now defunct), FIFA Club World Cup or UEFA Super Cup – do not usually count as part of a Double or Treble.
 

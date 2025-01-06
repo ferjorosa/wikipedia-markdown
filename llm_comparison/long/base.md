@@ -2,6 +2,7 @@
 
 
 
+
 Manchester United Football Club (F.C.) is a professional football club. It is based in Old Trafford, Greater Manchester, England. It plays in the Premier League, the highest level of English football. Its nickname is "the Red Devils". The club started as Newton Heath LYR Football Club, in 1878. It changed its name to Manchester United in 1902. It moved to its current stadium, Old Trafford, in 1910.
 
 Manchester United has won more trophies than any other club in English football other than Liverpool FC. It has won 20 League titles, 13 FA Cups, six League Cups and 21 FA Community Shields. United has also won three UEFA Champions Leagues, one UEFA Europa League, one UEFA Cup Winners' Cup, one UEFA Super Cup, one Intercontinental Cup and one FIFA Club World Cup. In 1998–99, the club became the first club in the history of English football to win the continental European treble. It won the UEFA Europa League in 2016–17 and became one of five clubs to win all three top UEFA club competitions.
@@ -16,7 +17,9 @@ Manchester United has the most fans in the world. It has big rivalries with Live
 
 == History ==
 
+
 === Early years (1878–1945) ===
+
 Manchester United was started in 1878. It was called Newton Heath LYR Football Club. The Carriage and Wagon department of the Lancashire and Yorkshire Railway (LYR) depot started the club at Newton Heath. All of the team worked at Lancashire and Yorkshire Railway depot. The team first played against other departments and against other railway companies. On 20 November 1880, it played in their first official match. The players wore the colours of the railway company: green and gold. They lost 6–0 against the reserve team of Bolton Wanderers. In 1888, the club became a founding member of The Combination, a regional football league. The league stopped after only one year. Newton Heath joined the new Football Alliance. This ran for three seasons. It was then combined with The Football League. This meant the club started the 1892–93 season in the First Division. By this time it was not a part of the railway company. It did not use "LYR" in its name anymore. After two seasons, the club was relegated to the Second Division.
 
 In January 1902 the club had debts of £2,670, equivalent to (the same as) £ in . The club got a winding-up order. Captain Harry Stafford found four local businessmen, including John Henry Davies who became club president. Each businessman invested £500. They were then allowed to help run the club. On 24 April 1902, they changed the name of the club to Manchester United F.C.. Ernest Mangnall became the manager in 1903. The team finished the Second Division in second position in 1906. It went back to the First Division. It won the league in 1908. This was the club's first league title. The season after, the club won the first ever Charity Shield. That season, the club also won its first FA Cup title. Manchester United won the First Division for the second time in 1911. At the end of the next season, Mangnall left the club to join Manchester City.
@@ -24,6 +27,7 @@ In January 1902 the club had debts of £2,670, equivalent to (the same as) £ in
 In 1922, three years after football started again after the First World War, the club was relegated to the Second Division. It stayed in this division until 1925. It went back to the first division, but was relegated again in 1931. Manchester United became a yo-yo club. In 1934 it had its worst ever position in the league. It was 20th place in the Second Division. The main benefactor, John Henry Davies, died in October 1927. After this the club's finances got worse. Manchester United were close to bankruptcy, but James W. Gibson invested £2,000 in December 1931. He took control of the club. In the 1938–39 season, the last year of football before the Second World War, the club was 14th in the First Division.
 
 === Busby years (1945–1969) ===
+
 
 In October 1945, football started again. Matt Busby became the manager. He wanted a lot of control when choosing payers, player transfers and training sessions. Busby and his team finished second in 1947, 1948 and 1949. They won the FA Cup in 1948. In 1952, the club won the First Division. This was the first time that it won the league for 41 years. It also won league titles in 1956 and 1957. Matt Busby used the youth team to get new players, and this was very successful. At that time, the team had average age of 22. The media gave them the nickname "the Busby Babes". This was because Busby believed in his young players. In 1957, Manchester United became the first English team to play in the European Cup. The Football League did not want the club to play, but it did not stop them. The year before, the Football League had stopped Chelsea from playing in that cup. United lost in the semi-final to Real Madrid. However, earlier in the tournament the team won 10–0 victory against Belgian champions Anderlecht. This is still the club's biggest ever victory.
 
@@ -34,12 +38,14 @@ The assistant manager, Jimmy Murphy, became the manager while Busby recovered fr
 Busby built the team again in the 1960s. He signed players such as Denis Law and Pat Crerand. They played well with the next generation of young players, including George Best. The club won the FA Cup in 1963. The season after, it finished second in the league. It won the league in 1965 and 1967. In 1968, Manchester United became the first English (and second British, after Celtic F.C.) club to win the European Cup. It beat Benfica 4–1 in the final. The team had three European Footballers of the Year: Bobby Charlton, Denis Law and George Best. The club then represented Europe in the 1968 Intercontinental Cup against Estudiantes of Argentina. It lost the first match in Buenos Aires, 1–0. It drew 1–1 at Old Trafford three weeks later. This meant Manchester United lost the cup. Busby resigned as manager in 1969. The reserve team coach replaced him. He was former Manchester United player Wilf McGuinness.
 
 === 1969–1986 ===
+
 alt=A smiling man with dark hair wearing a white, green and blue tracksuit top over a blue shirt. He is holding a washbag under his right arm.|thumb|Bryan Robson was the captain of Manchester United for 12 years, longer than any other player.
 The club finished in 8th place in the 1969–70 season. It had a bad start to the 1970–71 season. Busby started to be the temporary manager again. McGuinness went back to be the reserve team coach. In June 1971, Frank O'Farrell became the manager. He stayed less than 18 months. Tommy Docherty became the new manager in December 1972. Docherty helped Manchester United stay in the First Division that season. However, the club relegated to the second division in 1974. Best, Law, and Charlton had left the club by that point. The team won promotion back to the first division theyear after. United played in the FA Cup final in 1976, but Southampton won the match. The club was in the final again in 1977. It beat Liverpool 2–1. Docherty was sacked soon after, because he had had an affair with the club physiotherapist's wife.
 
 Dave Sexton became the new manager in the summer of 1977. He signed the famous players Joe Jordan, Gordon McQueen, Gary Bailey, and Ray Wilkins. However, the team did not have great results. It finished in the top two in 1979–80. It lost against Arsenal in the 1979 FA Cup Final. Sexton was sacked in 1981, even though the team won the last seven games when he was the manager. Ron Atkinson replaced him. He broke the British record transfer fee (the money used to buy a player) to sign Bryan Robson from West Bromwich Albion. Under Atkinson, Manchester United won the FA Cup twice in three years – in 1983 and 1985. In 1985–86, the club was favourite to win the league after 13 wins and two draws in its first 15 matches. However, they only finished the season in fourth place. Atkinson was sacked the year after, because the club was already in danger of relegation by November.
 
-=== Ferguson years (1986–2013) ===
+===
+ Ferguson years (1986–2013) ===
 
 Alex Ferguson and his assistant Archie Knox arrived from Aberdeen on the day of Atkinson's left. They guided the club to an 11th-place finish in the league. They finished second in 1987–88, but the club was back in 11th place the season after. Reports say Ferguson almost lost his job. A win against Crystal Palace in the 1990 FA Cup Final replay (after a 3–3 draw) saved Ferguson's career. The season after this, Manchester United won its first Cup Winners' Cup title. It also played in the 1991 UEFA Super Cup. It beat European Cup holders (the champions from the year before) Red Star Belgrade 1–0 in the final at Old Trafford. In 1992, United played in another League Cup final. The club beat Nottingham Forest 1–0 at Wembley. In 1993, Manchester United won its first league title since 1967. A year later, for the first time since 1957, it won a second title in a row. It also won the FA Cup. This means the team completed the first "Double" in the club's history. United then became the first English club to win the Double twice. It won both competitions again in 1995–96. In 1996–97, it won the league again, one game before the end of the season.
 
@@ -56,9 +62,11 @@ Years used  	Name
 1892-1902   	Newton Heath F.C.
 1902-present	Manchester United F.C.
 
-=== Recent history ===
+===
+ Recent history ===
 
-==== 2013 - Present ====
+====
+ 2013 - Present ====
 On 8 May 2013, Ferguson said he would retire as manager at the end of the football season. He said he would stay at the club as a director and club ambassador. The club announced the next day that Everton manager David Moyes would be the new manager from 1 July. He signed a six-year contract. Moyes was sacked after a bad season. The club finished 7th in the Premier League title. It did not qualify for the UEFA Champions League for the first time since 1995–96. The club also did not qualify for the Europa League. This was the first time Manchester United had not qualified for a European competition since 1990.  Ryan Giggs became player-manager (when a player is also the manager at the same time) on 22 April 2014, only 10 months after Moyes became manager. On 19 May 2014, the club said Louis van Gaal would replace Moyes as Manchester United manager. He got a three-year deal. Giggs was his assistant. Malcolm Glazer, of the Glazer family that owns the club, died on 28 May 2014.
 
 In Van Gaal's first season, United finished in fourth in the Premier League. This meant they reached the Champions League. In Van Gaal's second season, United lost in the group stage of this tournament. United bought a few expensive players. In 2015, after winning 3-0 against Sunderland, Man United reached 1st place for the first time in over two years. However, after losing 0-3 to Arsenal, the club fell to 3rd place. The team did not do very well in the league. They finished in 5th place. However, that same season, Manchester United won the FA Cup for a 12th time. This was their first trophy since 2013. Van Gaal was sacked as manager just two days later.
@@ -75,7 +83,8 @@ On 21 April 2022, Erik ten Hag became the manager from the end of the 2021–22 
 
 In 2023–2024, Manchester United had a difficult season. The club only finished 8th in the Premier League. This was its lowest finish in the League since 1989–1990. However, the club won its 13th FA Cup against rivals Manchester City, at Wembley on 25 May 2024. The final finished 2–1 to United. Alejandro Garnacho and Kobbie Mainoo both scored in the first half. Jeremy Doku scored late in the second half for Man City. This was Ten Hag's second trophy in two seasons.
 
-== Crest and colours ==
+==
+ Crest and colours ==
 The club crest comes from the Manchester City Council coat of arms. However, on the current crest only the ship in full sail is still there. The devil comes from the club's nickname "The Red Devils". Club programmes and scarves in the 1960s had a devil on them. It became part of the club crest in 1970. The club added the crest to the front of the shirt in 1971.
 
 Newton Heath's uniform in 1879 has been documented as 'white with blue cord'. This was four years before the club played its first match in a competition. A 1892 photograph of the Newton Heath team seems to show the players wearing red-and-white quartered shirts and navy blue knickerbockers. Between 1894 and 1896, the players wore green and gold shirts. In 1896, these changed to white shirts. They were worn with navy blue shorts.
@@ -86,7 +95,8 @@ The Manchester United away kit has often been a white shirt, black shorts and wh
 
 The club's third kit is often all-blue. This was most recently true during the 2014–15 season. The players also wore a green-and-gold halved (half green, half gold) shirt between 1992 and 1994. They used a blue-and-white striped shirt during the 1994–95 and 1995–96 seasons and once in 1996–97. They wore an all-black kit during the 1998–99 season when they won the Treble. They used a white shirt with black-and-red horizontal pinstripes between 2003–04 and 2005–06. From 2006–07 to 2013–14, the third kit was the away kit of the season before. However, they used the new club shirt sponsor in 2006–07 and 2010–11. The only time they did not do this was in 2008–09. They used an all-blue kit to mark the 40th anniversary of the 1967–68 European Cup win.
 
-=== Kit evolution ===
+===
+ Kit evolution ===
 
 
 
@@ -100,18 +110,22 @@ The club's third kit is often all-blue. This was most recently true during the 2
 
 
 
-== Grounds ==
+==
+ Grounds ==
 
 
-=== 1878–1893: North Road ===
+===
+ 1878–1893: North Road ===
 Newton Heath first played on a field on North Road. This was close to the railway. At first, the capacity (number of people who could watch) was about 12,000. However, club officials said the facilities were not good enough for a club that wanted to join The Football League. They made it bigger in 1887. In 1891, Newton Heath bought two grandstands. Each held 1,000 people. Attendances (the number of people watching) were not recorded for many of the early matches at North Road. However, the highest attendance was about 15,000. This was for a First Division match against Sunderland on 4 March 1893. There was a similar attendance for a friendly match (not competitive) against Gorton Villa on 5 September 1889.
 
-=== 1893–1910: Bank Street ===
+===
+ 1893–1910: Bank Street ===
 In June 1893, Manchester Deans and Canons, the owner of North Road, evicted the team. They did not think that the club was right to make people pay to get into the ground. The club secretary, A. H. Albut, procured the use of the Bank Street ground in Clayton. At first it had no stands. By the start of the 1893–94 season, there were two stands. One stand was along the whole length of the pitch on one side. The other stand was behind the goal at the "Bradford end". At the opposite end, the "Clayton end", the ground had been "built up, thousands thus being provided for". Newton Heath's first league match at Bank Street was against Burnley on 1 September 1893. 10,000 people watched and Alf Farman scored a hat-trick. Newton Heath's won 3–2. The club added other stands for the next league game against Nottingham Forest, three weeks later. In October 1895, before the visit of Manchester City, the club bought a 2,000-capacity stand. This was from the Broughton Rangers rugby league club. Newton Heath also put up another stand on the "reserved side" (as opposed to the "popular side"). However, bad weather meant only 12,000 could watch the match against Manchester City.
 
 Bailiffs closed the Bank Street ground for a time in 1902. The club captain, Harry Stafford, raised enough money to pay for the club's next away game at Bristol City. He also helped to find a ground at Harpurhey for the next reserves game against Padiham. After investors gave the club more money, the new club president John Henry Davies paid £500 for a new 1,000-seat stand at Bank Street. Within four years, the stadium had cover on all four sides. It was also able to hold about 50,000 people. Some of them could watch from the viewing gallery on top of the Main Stand.
 
-=== 1910–present: Old Trafford ===
+===
+ 1910–present: Old Trafford ===
 
 Manchester United won its first league title in 1908. It won the FA Cup a year later. Davies decided that that Bank Street was too small for his ambitions. In February 1909, six weeks before the club's first FA Cup title, Old Trafford became the home of Manchester United. The club bought the land for around £60,000. Architect Archibald Leitch had about £30,000 to build the stadium. The original plans were for a capacity of 100,000 people. However, this changed to 77,000 because it was too expensive. Brameld and Smith of Manchester built the stadium. The stadium's record attendance was on 25 March 1939. It was for an FA Cup semi-final between Wolverhampton Wanderers and Grimsby Town. 76,962 people watched the match.
 
@@ -121,12 +135,14 @@ The Taylor Report said that clubs needed to have a stadium with only seats. This
 
 Manchester United has the second highest average attendance of European football clubs. This is behind only Borussia Dortmund.
 
-== Support ==
+==
+ Support ==
 Manchester United is one of the most popular football clubs in the world. It has one of the highest average home attendances (the most people that go to the stadium to watch) in Europe. The club says that there are more than 200 officially recognised groups of the Manchester United Supporters Club (MUSC). They are in at least 24 countries. The club goes on summer tours every year. These are very popular. Accountancy firm and sports industry consultants Deloitte says that they believe that Manchester United has 75 million fans in the world. The club has the third most people in the world following them on social media among sports teams. The first and second are Barcelona and Real Madrid. It has over 73 million Facebook fans as of December 2019. A 2014 study showed that Manchester United had the loudest fans in the Premier League.
 
 Two independent bodies help the fans: the Independent Manchester United Supporters' Association (IMUSA), which has close links to the club through the MUFC Fans Forum, and the Manchester United Supporters' Trust (MUST). After the Glazer family bought the club in 2005, a group of fans formed another club. This club is called F.C. United of Manchester. The West Stand of Old Trafford is called the "Stretford End". It is the home end(where the local fans sit) and the loudest part of the stadium.
 
-=== Rivalries ===
+===
+ Rivalries ===
 Manchester United has rivalries with Arsenal, Leeds United, Liverpool, and Manchester City. The club plays in the Manchester derby against Manchester City.
 thumb|Cristiano Ronaldo on the ball in a 2009 Premier League game between Manchester United and Liverpool
 The rivalry with Liverpool comes from the competition between the two cities during the Industrial Revolution. At the time, Manchester was famous for its textile industry and Liverpool was an important port. The two clubs are the most successful English teams in both domestic (in England) and international competitions. Between them they have won 39 league titles, 9 European Cups, 4 UEFA Cups, 5 UEFA Super Cups, 20 FA Cups, 14 League Cups, 2 FIFA Club World Cups, 1 Intercontinental Cup and 37 FA Community Shields. It is one of the biggest rivalries in the football world. It is also one of the most famous matches in English football.
@@ -135,7 +151,8 @@ The "Roses Rivalry" with Leeds comes from the Wars of the Roses. These were wars
 
 The rivalry with Arsenal comes from the two teams, and managers Alex Ferguson and Arsène Wenger, often fighting for the Premier League title. They have 33 league trophies between them (20 for Manchester United, 13 for Arsenal). This has become one of the biggest Premier League rivalries in history.
 
-== Global brand ==
+==
+ Global brand ==
 Manchester United has been called a global brand. In 2011, Brand Finance said the club's trademarks and intellectual property was worth £412 million. This was £39 million more than the year before. It was also £11 million more than the second best brand, Real Madrid. It gave the brand a strength rating of AAA (Extremely (very) Strong). In July 2012, Forbes magazine placed Manchester United first in its list of the ten most valuable (worth the most money) sports team brands. It said that the Manchester United brand was worth $2.23 billion. The club is third in the Deloitte Football Money League (behind Real Madrid and Barcelona). In January 2013, the club became the first sports team in the world to be valued at $3 billion. Forbes magazine valued the club at $3.3 billion. This was $1.2 billion more than the next most valuable sports team. Real Madrid were first for the next four years, but Manchester United returned to the top of the Forbes list in June 2017. It had a valuation of $3.689 billion.
 
 Many say that the strength of Manchester United's global brand is thanks to Matt Busby. He built the team again after the Munich air disaster. Bobby Charlton and Nobby Stiles (both won the World Cup with England in 1966), Denis Law and George Best played in this team. The team had an attacking style of play and "captured the imagination of the English footballing public". Busby's team also became linked to the liberalisation of Western society during the 1960s. George Best was known as the "Fifth Beatle" because of his haircut. He was the first footballer to be important in the media away from football.
@@ -144,7 +161,8 @@ Manchester United was the second English football club to float on the London St
 
 When a club finishes in a better position in the league it gets more money from television rights. This means that if a teams wins more matches, the club also gets more money. Since the Premier League started, Manchester United has had the the most revenue from the BSkyB television rights. Manchester United has also had the highest commercial income of any English club. In 2005–06, the club's commercial operation made £51 million. This was £42.5 million at Chelsea, £39.3 million at Liverpool, £34 million at Arsenal and £27.9 million at Newcastle United. An important sponsorship relationship was with sports company Nike. They looked after the club's merchandising operation as part of a £303 million 13-year partnership between 2002 and 2015. There are many branded products and services to buy through Manchester United Finance and the club's membership scheme. There are also Manchester United-branded media services. For example, the club has its own television channel, MUTV. This has helped the club get more fans who aren't able to got to Old Trafford.
 
-=== Sponsorship ===
+===
+ Sponsorship ===
 
 Period   	Kit manufacturer                                 	Shirt sponsor (chest)	Shirt sponsor (sleeve)
 1945–1975	Umbro                                            	—                    	—
@@ -171,7 +189,8 @@ The club's first kit manufacturer was Umbro. In 1975, United agreed a five-year 
 
 On 30 July 2012, United signed a seven-year deal with American automotive corporation General Motors. They became the shirt sponsor after Aon, from the 2014–15 season. The deal was worth about $80m-a-year or $559m over seven years. The club used the logo of General Motors brand Chevrolet on the shirts. Nike said that they would not sign a new kit deal with Manchester United after the 2014–15 season. They said this was because it was becoming more expensive. In 2015, Adidas became the new kit sponsor for Manchester United. They signed a world-record 10-year deal worth at least £750 million. Plumbing products manufacturer Kohler became the club's first sleeve sponsor at the start of the 2018–19 season. The deal with General Motors ended in 2021. Manchester United then signed a five-year deal with TeamViewer. The deal is worth £235m.
 
-== Ownership and finances ==
+==
+ Ownership and finances ==
 The Lancashire and Yorkshire Railway Company first funded the club. The club became a limited company in 1892. It sold shares to its supporters for £1. It used an application form. In 1902, the four local businessmen who invested £500 to save the club from bankruptcy became the main owners. John Henry Davies was among these. He became the club president. After his death in 1927, the club was at risk of bankruptcy again. James W. Gibson saved it in December 1931. He took control of the club after investing £2,000. Gibson promoted his son, Alan, to the board in 1948. James Gibson died three years later. The Gibson family stayed as the owner of the club through James' wife, Lillian. However, the former player Harold Hardman became the chairman .
 
 Louis Edwards, a friend of Matt Busby, became part of the board a few days after the Munich air disaster. He started to buy shares in the club. He spent about £40,000. He had a 54 percent shareholding and took control in January 1964. When Lillian Gibson died in January 1971, Alan Gibson got her shares. He sold some of his shares to Louis Edwards' son, Martin, in 1978. Martin Edwards became chairman when his father died in 1980. Media tycoon Robert Maxwell tried to buy the club in 1984. However, he did not want to pay the price Edward wanted. In 1989, chairman Martin Edwards tried to sell the club to Michael Knighton for £20 million. The sale did not happen. Knighton joined the board of directors instead.
@@ -190,8 +209,10 @@ In 2023, the Glazers were interested in selling some shares. Different investors
 
 On 24 December 2023, the club said that Ratcliffe had bought 25 per cent of Manchester United. It also said that his INEOS Sport company was going to look after football operations. The Glazers are still the biggest shareholders. They own over 40% of the shares. Sir Jim Ratcliffe completed the deal to buy shares in the club on 21 February 2024. As of 2024, he owns 27.7% of the club (25% of the Class A shares and 25% of the Class B shares).
 
-==Players==
-===First-team squad===
+==
+Players==
+===
+First-team squad===
 
 
 
@@ -223,7 +244,8 @@ On 24 December 2023, the club said that Ratcliffe had bought 25 per cent of Manc
 
 
 
-==== Out on loan ====
+====
+ Out on loan ====
 
 
 
@@ -235,7 +257,8 @@ On 24 December 2023, the club said that Ratcliffe had bought 25 per cent of Manc
 
 
 
-=== Player of the Year awards ===
+===
+ Player of the Year awards ===
 
 Team:      	First team                            	U21s                              	U18s
 Award      	Sir Matt Busby Player of the Year     	Players' Player of the Year       	Denzil Haroun Reserve Team Player of the Year	Jimmy Murphy Young Player of the Year
@@ -244,7 +267,8 @@ Holder     	Bruno Fernandes	Diogo Dalot	Elyh Harrison         	Ethan Wheatly
 
 
 
-== Coaching staff ==
+==
+ Coaching staff ==
 
 Position                                           	Staff
 Manager                                            	🇵🇹 Ruben Filipe Marques Amorim
@@ -272,7 +296,8 @@ Under-18s lead coach                               	Adam Lawrence
 Senior academy coach                               	Mark Dempsey
 
 
-=== Managerial history ===
+===
+ Managerial history ===
 
 
 
@@ -309,11 +334,13 @@ Dates	Name               	Notes
 2024-                                                       	Ruben Amorim
 
 
-== Management ==
+==
+ Management ==
 
 * Owner: Glazer family via Red Football Shareholder Limited and Sir Jim Ratcliffe
 
-=== Manchester United plc ===
+===
+ Manchester United plc ===
 
 Position                                                                 	Name
 Co-chairmen                                                              	Avram Glazer
@@ -332,7 +359,8 @@ John Reece
 Manu Sawhney
 
 
-=== Manchester United Football Club ===
+===
+ Manchester United Football Club ===
 
 Office                                        	Name
 Honorary president                            	Martin Edwards
@@ -351,7 +379,8 @@ Director of football insights &amp; innovation	Richard Hawkins
 Director of data science                      	Dominic Jordan
 
 
-==Honours==
+==
+Honours==
 Manchester United has won more trophies than most clubs in Europe. The club's first trophy was the Manchester Cup. It won this as Newton Heath LYR in 1886. In 1908, the club won its first league title. It won the FA Cup for the first time the year after. Since then, it has won a record 20 first division titles. This includes a record 13 Premier League titles. Its 13 FA Cups is second only to Arsenal (14). They have also played a record 30 times in the FA Community Shield (which used to be called the FA Charity Shield). This is a game at the start of each season between the winners of the league and the FA Cup from the season before. Out of those 30 games, Manchester United won 21. This counts four times when the match was a draw and the two clubs shared the trophy.
 
 The club won a lot under manager Matt Busby. This started with the FA Cup in 1948. The high point was becoming the first English club to win the European Cup in 1968, and winning five league titles in the years before. However, the club's best decade was in the 1990s when Alex Ferguson was the manager. In the 1990s, he helped the club win five league titles, four FA Cups, one League Cup, five Charity Shields (one shared), one UEFA Champions League, one UEFA Cup Winners' Cup, one UEFA Super Cup and one Intercontinental Cup. The club also won the Double (winning the Premier League and FA Cup in the same season) three times during the 1990s. Before their first double in 1993–94, it had only happened five times in English football. When they won a second double in 1995–96, it was called the "Double Double". They were the first team to win the double twice. They won the European Cup (now the UEFA Champions League) for a second time in 1999, and the Premier League and FA Cup. This means they became the first English club to win the Treble. That Champions League title meant they could play in the Intercontinental Cup (which doesn't exist anymore). They also won this. They are the only British team to win the Intercontinental Cup. They won another Champions League title in 2008. This meant they qualified for the 2008 FIFA Club World Cup. They also won this cup. Until 2019, they were the only British team to win that competition. Liverpool then won it in 2019.
@@ -379,7 +408,8 @@ Intercontinental Cup                                                            
 *
 *  shared record
 
-=== Doubles and Trebles ===
+===
+ Doubles and Trebles ===
 
 * Doubles
 ** League and FA Cup (3): 1993–94, 1995–96, 1998–99
@@ -391,7 +421,8 @@ Intercontinental Cup                                                            
 
 Short competitions – such as the FA Charity/Community Shield, Intercontinental Cup (now defunct), FIFA Club World Cup or UEFA Super Cup – do not usually count as part of a Double or Treble.
 
-== League position ==
+==
+ League position ==
 
 Season 	League                	Position
 2000-01	English Premier League	1st
@@ -420,10 +451,12 @@ Season 	League                	Position
 
 *Bold indicates a place of third or higher.
 
-=== Former position ===
+===
+ Former position ===
 
 
-== Club records ==
+==
+ Club records ==
 * Record League victory: 10-1 v Wolverhampton, Division 1, 15 October 1892
 * Record Premiership victory: 9-0 v Ipswich Town, 4 March 1995 and 9-0 v Southampton, 2 February 2021
 * Record European Cup victory: 10-0 v Anderlecht, European Champion Clubs' Cup, Preliminary Round, 26 September 1956
@@ -452,17 +485,21 @@ Season 	League                	Position
 * Fastest goal: 15 seconds - Ryan Giggs v Southampton, Premiership, 18 November 1995
 * Fastest four goals: 13 minutes - Ole Gunnar Solksjær v Nottingham Forest, Premiership, 6 February 1999
 
-== Manchester United Women ==
+==
+ Manchester United Women ==
 
 A team called Manchester United Supporters Club Ladies started in the late 1970s. It was unofficially recognised as the club's women's team. It helped start the North West Women's Regional Football League in 1989. The team made an official partnership with Manchester United in 2001. It became the club's official women's team. However, in 2005, after Malcolm Glazer became the owner, the club was disbanded. This was because it was seen to be "unprofitable" (not good for making money). In 2018, Manchester United formed a new women's football team. It started in the second division of women's football in England in its first season. It won the championship that season. The season after, it joined the first division, the Women's Super League.
 
-== Related pages ==
+==
+ Related pages ==
 * List of Manchester United F.C. players
 
-== Notes ==
+==
+ Notes ==
 
 
-== References ==
+==
+ References ==
 
 
 
