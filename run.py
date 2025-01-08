@@ -34,8 +34,8 @@ def run():
         file_name=config["raw_file"],  # output name
         metadata_file_name=config["raw_metadata_file"],
         url=(
-            "https://dumps.wikimedia.org/simplewiki/latest/"
-            "simplewiki-latest-pages-articles-multistream.xml.bz2"
+            f"https://dumps.wikimedia.org/{config['domain_download']}/latest/"
+            f"{config['domain_download']}-latest-pages-articles-multistream.xml.bz2"
         ),
     )
     print(f"Downloaded file: {file_path}")
@@ -44,7 +44,10 @@ def run():
     # 2 - Parse wiki dump file to generate Parquet
     print("\nParsing Wiki dump...")
     process_articles_to_parquet(
-        input_path=file_path, output_path=parsed_file_path, clean_text=True
+        input_path=file_path,
+        output_path=parsed_file_path,
+        domain=config["domain"],
+        clean_text=True,
     )
 
     # 3 - Load articles
@@ -64,7 +67,7 @@ def run():
     )
 
     # 5.1 - (EXTRA) Select only a handful of rows to test the pipeline
-    filtered_data = filtered_data.head(500)
+    filtered_data = filtered_data.head(2)
 
     # 6 - Format articles in Markdown
     print("Formatting articles in Markdown...")
@@ -80,6 +83,7 @@ def run():
 
     parallel_markdown_formatting(
         data=filtered_data,
+        domain=config["domain"],
         model_openrouter=config["model_openrouter"],
         template=prompts["format_markdown"],
         tokenizer=tokenizer,

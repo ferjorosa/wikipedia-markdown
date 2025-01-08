@@ -11,6 +11,7 @@ from src.utils.tokenizer import count_tokens
 
 def parallel_markdown_formatting(
     data: pd.DataFrame,
+    domain: str,
     model_openrouter: str,
     template: str,
     tokenizer: PreTrainedTokenizerFast,
@@ -73,7 +74,7 @@ def _process_row(
     Convert a DataFrame row's text to markdown and insert it into a database.
 
     Args:
-        row (pd.Series): A DataFrame row with 'id', 'title', and 'text' fields.
+        row (pd.Series): A DataFrame row with 'id', 'title', 'text', and 'url' fields.
         model_openrouter (str): Model for markdown conversion.
         template (str): Template for markdown conversion.
         tokenizer (PreTrainedTokenizerFast): Tokenizer for counting tokens.
@@ -105,6 +106,7 @@ def _process_row(
         db_path=db_path,
         id=int(row["id"]),
         title=row["title"],
+        url=row["url"],
         raw_text=row["text"],
         markdown_text=markdown_text,
         raw_text_tokens=n_tokens,

@@ -88,10 +88,8 @@ def download_wiki_dump(
 
 
 if __name__ == "__main__":
-    destination = Path("../data/raw")
-    try:
-        file_path, metadata_file_path = download_wiki_dump(destination)
-        print(f"Downloaded file: {file_path}")
-        print(f"Metadata saved in: {metadata_file_path}")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+    file_path, metadata_file_path = download_wiki_dump(
+        folder_path=Path("../data/raw"), file_name="articles.xml.bz2"
+    )
+    print(f"Downloaded file: {file_path}")
+    print(f"Metadata saved in: {metadata_file_path}")

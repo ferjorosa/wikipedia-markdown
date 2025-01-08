@@ -11,7 +11,7 @@ from tqdm import tqdm
 
 
 def fetch_article_by_id(
-    filename: Union[str, Path], target_id: int, clean_text: bool = False
+    filename: Union[str, Path], target_id: int, domain: str, clean_text: bool = False
 ) -> Optional[Dict[str, str]]:
     """Retrieve the text, title, and ID of a specific Wikipedia article by its ID
     from a bz2-compressed XML dump file.
@@ -25,7 +25,7 @@ def fetch_article_by_id(
         A dictionary containing the article's title, content, and ID if found,
         otherwise None.
     """
-    for article in _iterate_articles(filename, clean_text=clean_text):
+    for article in _iterate_articles(filename, domain, clean_text=clean_text):
         if article and int(article["id"]) == target_id:
             return article
     print(f"Article with ID {target_id} not found in the dump file.")
@@ -35,6 +35,7 @@ def fetch_article_by_id(
 def process_articles_to_parquet(
     input_path: Union[str, Path],
     output_path: Union[str, Path],
+    domain: str,
     clean_text: bool = False,
 ) -> None:
     """Process all articles in a Wikipedia XML dump file and save them into a
@@ -54,7 +55,7 @@ def process_articles_to_parquet(
 
     articles = []
     for article in tqdm(
-        _iterate_articles(input_path, clean_text=clean_text),
+        _iterate_articles(input_path, domain, clean_text=clean_text),
         total=total_pages,
         desc="Processing articles",
         unit="article",
@@ -104,8 +105,22 @@ def _clean_article_text(article_text: str) -> str:
     return final_text
 
 
+def _generate_url(title: str, domain: str) -> str:
+    """Generate the Wikipedia URL for a given article title.
+
+    Args:
+        title: The title of the Wikipedia article.
+        domain: The Wikipedia domain to use (e.g., "en", "simple").
+
+    Returns:
+        The full URL to the Wikipedia article.
+    """
+    encoded_title = title.replace(" ", "_")
+    return f"https://{domain}.wikipedia.org/wiki/{encoded_title}"
+
+
 def _iterate_articles(
-    filename: Union[str, Path], clean_text: bool = False
+    filename: Union[str, Path], domain: str, clean_text: bool = False
 ) -> Iterator[Optional[Dict[str, str]]]:
     """Iterate over articles in a bz2-compressed XML dump file.
 
@@ -123,7 +138,7 @@ def _iterate_articles(
             if "<page>" in line:
                 article = ""
             elif "</page>" in line:
-                parsed_article = _parse_article(article)
+                parsed_article = _parse_article(article, domain)
                 if parsed_article and clean_text:
                     parsed_article["text"] = _clean_article_text(parsed_article["text"])
                 yield parsed_article
@@ -131,7 +146,7 @@ def _iterate_articles(
                 article += line
 
 
-def _parse_article(text: str) -> Optional[Dict[str, str]]:
+def _parse_article(text: str, domain: str) -> Optional[Dict[str, str]]:
     """Parse a Wikipedia article chunk and extract relevant information.
 
     Args:
@@ -153,7 +168,15 @@ def _parse_article(text: str) -> Optional[Dict[str, str]]:
         content = text.split("</text")[0].split("<text")[1].split(">", maxsplit=1)[1]
         content = f"= {title.strip()} =\n{content.strip()}"
 
-        return {"title": title.strip(), "text": content, "id": article_id.strip()}
+        # Generate the URL for the article
+        url = _generate_url(title, domain)
+
+        return {
+            "title": title.strip(),
+            "text": content,
+            "id": article_id.strip(),
+            "url": url,
+        }
     except Exception as e:
         print(f"Error parsing article: {e}")
         return None
@@ -187,16 +210,22 @@ if __name__ == "__main__":
     input_file = "articles.xml.bz2"
     input_path = raw_path / input_file
     output_path = Path("../data/processed/articles.parquet")
+    domain = "simple"
 
     # Example 1: Fetch a specific article by ID and clean its text
     target_article_id = 3077  # Replace with the desired article ID
-    article = fetch_article_by_id(input_path, target_article_id, clean_text=True)
+    article = fetch_article_by_id(
+        filename=input_path, target_id=target_article_id, domain=domain, clean_text=True
+    )
     if article:
         print(f"Title: {article['title']}")
         print(f"ID: {article['id']}")
+        print(f"URL: {article['url']}")
         print(f"Cleaned Text:\n{article['text']}")
     else:
         print(f"Article with ID {target_article_id} not found.")
 
     # Example 2: Process all articles, clean their text, and save to Parquet
-    process_articles_to_parquet(input_path, output_path, clean_text=True)
+    process_articles_to_parquet(
+        input_path=input_path, output_path=output_path, domain=domain, clean_text=True
+    )

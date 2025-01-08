@@ -1,5 +1,11 @@
 # wikipedia-markdown
 
+TODO:
+
+* Ver si puedo obtener la URL del dump e insertarla en la DB
+
+-----
+
 * El dataset de Huggingface esta anticuado
 * Usar mwparserfromhell quita demasiada estructura del texto (listas, tablas, etc.)
 * La API de Wikipedia (https://github.com/martin-majlis/Wikipedia-API) devuelve texto similar al de los dumps, tenemos el mismo problema de esturctura

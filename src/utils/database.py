@@ -29,6 +29,7 @@ def initialize_db(db_path: Union[str, Path]):
             CREATE TABLE IF NOT EXISTS articles (
                 id INTEGER PRIMARY KEY,
                 title TEXT,
+                url TEXT,
                 raw_text TEXT,
                 markdown_text TEXT,
                 raw_text_tokens INTEGER,
@@ -71,6 +72,7 @@ def insert_row(
     db_path: Union[str, Path],
     id: int,
     title: str,
+    url: str,
     raw_text: str,
     markdown_text: str,
     raw_text_tokens: int,
@@ -85,6 +87,7 @@ def insert_row(
         db_path (str): Path to the SQLite database file.
         id (int): Unique identifier for the row.
         title (str): Title of the text.
+        url (str): URL of the article.
         raw_text (str): Original text.
         markdown_text (str): Transformed Markdown text.
         raw_text_tokens (int): Token count of raw text.
@@ -97,14 +100,15 @@ def insert_row(
     cursor.execute(
         """
         INSERT OR IGNORE INTO articles (
-            id, title, raw_text, markdown_text,
+            id, title, url, raw_text, markdown_text,
             raw_text_tokens, markdown_text_tokens, model
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
             id,
             title,
+            url,
             raw_text,
             markdown_text,
             raw_text_tokens,

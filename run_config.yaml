@@ -17,3 +17,7 @@ model_openrouter: "deepseek/deepseek-chat"
 
 # Number of tokens per chunk (for processing long articles)
 max_tokens: 7000
+
+# Wikipedia domain
+domain: "simple" # https://simple.wikipedia.org/
+domain_download: "simplewiki" # https://dumps.wikimedia.org/simplewiki/
