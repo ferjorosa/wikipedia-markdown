@@ -1735,6 +1735,29 @@ wheels = [
 ]
 
 [[package]]
+name = "mwparserfromhell"
+version = "0.6.6"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/47/aa/358f9af602b743ac8898353f240f678b69722801bd0625507c69d9755936/mwparserfromhell-0.6.6.tar.gz", hash = "sha256:71afec1e9784ba576e95d6f34845582d3c733a3a52ba770dd8a9c3a40e5b649f", size = 138899 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/70/ac/91a87496212f8909f983f6f057ddd1b4ba897bf48a67e4fdecc50d37b0ec/mwparserfromhell-0.6.6-cp310-cp310-macosx_11_0_x86_64.whl", hash = "sha256:d6995b9cfe6ec79556db0232a39210ac11aa69ee304cfc95b29c51be381e202b", size = 99352 },
+    { url = "https://files.pythonhosted.org/packages/4e/69/4fd2699c1d2db1a86e8ca02b5f1af7f49ab50c4da924c95d2dfd3be8c936/mwparserfromhell-0.6.6-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:ebc70f8a24aa60e54728be740f1c12a4acb1b12d1cc947d87b067cc1c83339fd", size = 192557 },
+    { url = "https://files.pythonhosted.org/packages/94/c6/23cf7c7525af4c70573c6a86a576daa4815b0fa3385a5b62eeef0b5cd0d6/mwparserfromhell-0.6.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:9136696d6b29838adcf8f428e3f7028b2c6e788fc05fe1beeb4b135429c356df", size = 191006 },
+    { url = "https://files.pythonhosted.org/packages/d7/4a/6aedd790b97ca897fe091cc9f1fdf9c7543cfdd1f56074e4af1d2489c7ee/mwparserfromhell-0.6.6-cp310-cp310-win32.whl", hash = "sha256:6b11dea3bcdebe4554933169eade815e9d6b898175faa5a20a744524fd99210f", size = 98529 },
+    { url = "https://files.pythonhosted.org/packages/fb/34/d9c24046343296c076ab3b093b3a0081318b86c1d1396ec6f308805003a3/mwparserfromhell-0.6.6-cp310-cp310-win_amd64.whl", hash = "sha256:6a89edf53f15877223d923e122e9a97f3f7b85f56dc56d91a3d77b89c9dd4126", size = 100534 },
+    { url = "https://files.pythonhosted.org/packages/19/15/1eb4fc9d68747885fb08f431de74a77a9b04851c141d58507ed337e721b2/mwparserfromhell-0.6.6-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:fff66e97f7c02aa0fd57ff8f702977a9c5a1d72ef55b64ee9b146291e4c41057", size = 123842 },
+    { url = "https://files.pythonhosted.org/packages/bd/67/cbe2512d3ad77520fa869aaf14f3bd76402ca9d0d11c3068386d0eb75696/mwparserfromhell-0.6.6-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:59633d3cc09993af75ced8dfbd6800e1e38e64620851a095575621548448875c", size = 197677 },
+    { url = "https://files.pythonhosted.org/packages/9b/1e/d3e3ff290be89135854c5945953c8fd9615388e795de1eb3da71e1a5b9ca/mwparserfromhell-0.6.6-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:007d0859e5467241b73c6e974df039a074609ce4e2b9df8c2263a8920554d032", size = 196287 },
+    { url = "https://files.pythonhosted.org/packages/3d/da/af2daa54a7a6d89eb9c37320a0a39d9815b66b1d5bd000fa80d43f1a6847/mwparserfromhell-0.6.6-cp311-cp311-win32.whl", hash = "sha256:dbe5976b1b524e26aa2eb71b6219960f2578f56b536c68e0a79deb63e3b7f710", size = 98364 },
+    { url = "https://files.pythonhosted.org/packages/30/51/16b6381021d3bb5ce1a277fd3334f7155f4aed1885e22eae78f4bfa07923/mwparserfromhell-0.6.6-cp311-cp311-win_amd64.whl", hash = "sha256:063c1e79befd1f55d77c358e0f5006f5ecf88ddf218ff6af55188d686139330e", size = 100668 },
+    { url = "https://files.pythonhosted.org/packages/61/c0/059513420490a2d96b470d4f560445d89f022a4749a20a952bfb002e2915/mwparserfromhell-0.6.6-cp312-cp312-macosx_10_9_universal2.whl", hash = "sha256:910d36bc70e8bea758380e75c12fd47626b295abec9f73a6099d8f937a649e77", size = 124175 },
+    { url = "https://files.pythonhosted.org/packages/bc/ab/da1b51303f0457c8cd343cf2d9a66fd0c5654fe8d0331c8107751459191f/mwparserfromhell-0.6.6-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:d2febd92a55a3f19b461833267726cb81429c3d6cb0006ad1691dfa849789e5d", size = 203036 },
+    { url = "https://files.pythonhosted.org/packages/7a/39/6bd8d9678e8b3f57babee36b5a9540db8cccba1b81a64ed56576c653994b/mwparserfromhell-0.6.6-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:2b75fae6d01c8fda19dbf127175122d7aa2964ef6454690e6868bbc3d80a7bc1", size = 201886 },
+    { url = "https://files.pythonhosted.org/packages/8e/e1/026ea60ac66a8bc9314230cc0c1ad2bf496ceb16a3771d4fcfd6ecc25971/mwparserfromhell-0.6.6-cp312-cp312-win32.whl", hash = "sha256:19e9a4bcd85707c83172405eb2a9a046eff9d38dd7f1a56a5e5ecbbfef4a640a", size = 98748 },
+    { url = "https://files.pythonhosted.org/packages/78/09/24c2f37524a3ebc3574975766748c7e4423ecefaa815c9fc4a324cbcf94a/mwparserfromhell-0.6.6-cp312-cp312-win_amd64.whl", hash = "sha256:cdc46c115b2495d4025920b7b30a6885a96d2b797ccc4009bf3cc02940ae55d3", size = 101071 },
+]
+
+[[package]]
 name = "mypy-extensions"
 version = "1.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -3413,6 +3436,7 @@ dependencies = [
     { name = "langchain-community" },
     { name = "langchain-openai" },
     { name = "lxml" },
+    { name = "mwparserfromhell" },
     { name = "openai" },
     { name = "pandas" },
     { name = "python-dotenv" },
@@ -3441,6 +3465,7 @@ requires-dist = [
     { name = "langchain-community", specifier = ">=0.3.13" },
     { name = "langchain-openai", specifier = ">=0.2.14" },
     { name = "lxml", specifier = ">=5.3.0" },
+    { name = "mwparserfromhell", specifier = ">=0.6.6" },
     { name = "openai", specifier = ">=1.58.1" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "python-dotenv", specifier = ">=1.0.1" },

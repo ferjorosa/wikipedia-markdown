@@ -25,8 +25,12 @@ def fetch_article_by_id(
         A dictionary containing the article's title, content, and ID if found,
         otherwise None.
     """
-    for article in _iterate_articles(filename, domain, clean_text=clean_text):
+    for article in _iterate_articles(
+        filename, domain, clean_text=False
+    ):  # Don't clean text here
         if article and int(article["id"]) == target_id:
+            if clean_text:
+                article["text"] = _clean_article_text(article["text"])
             return article
     print(f"Article with ID {target_id} not found in the dump file.")
     return None
@@ -80,7 +84,9 @@ def _clean_article_text(article_text: str) -> str:
     """
     # Parse the wikitext and convert it to plain text
     article_text_parsed = wtp.parse(article_text)
-    article_text_plain = article_text_parsed.plain_text()
+    article_text_plain = article_text_parsed.plain_text(
+        # replace_tables=False
+    )
 
     # Parse the HTML text using BeautifulSoup
     soup = BeautifulSoup(article_text_plain, features="lxml")
@@ -225,7 +231,7 @@ if __name__ == "__main__":
     else:
         print(f"Article with ID {target_article_id} not found.")
 
-    # Example 2: Process all articles, clean their text, and save to Parquet
-    process_articles_to_parquet(
-        input_path=input_path, output_path=output_path, domain=domain, clean_text=True
-    )
+    # # Example 2: Process all articles, clean their text, and save to Parquet
+    # process_articles_to_parquet(
+    #     input_path=input_path, output_path=output_path, domain=domain, clean_text=True
+    # )

@@ -1,0 +1,6 @@
+* Terminar lo de las tablas y probar todos los casos posibles
+* Agrupar los notebooks, dividirlos en directorios por casos de uso
+* Añadir lo de replace_tables en la parte de procesamiento
+  * Utilizar mwparserfromhell?
+    * El que tenga mas estrellas o sea mas facil/mejor de usar y este mas seguido...
+    * Tendria que pasar el metodo a wikitextparser sino...

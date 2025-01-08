@@ -67,7 +67,7 @@ def run():
     )
 
     # 5.1 - (EXTRA) Select only a handful of rows to test the pipeline
-    filtered_data = filtered_data.head(2)
+    filtered_data = filtered_data.head(50)
 
     # 6 - Format articles in Markdown
     print("Formatting articles in Markdown...")
