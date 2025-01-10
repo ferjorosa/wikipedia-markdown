@@ -95,15 +95,34 @@ def _clean_article_text(article_text: str) -> str:
 
     # Remove all <ref> tags and their contents
     for ref in soup.find_all("ref"):
-        ref.decompose()  # This removes the tag and its contents
+        ref.decompose()
+
+    # Remove all <sup> tags and their contents
+    for ref in soup.find_all("sup"):
+        ref.decompose()
+
+    # Remove all <ref> tags and their contents
+    for ref in soup.find_all("sub"):
+        ref.decompose()
+
+    # Extract and store all tables (to avoid being removed by BS4)
+    tables = soup.find_all("table")
+    table_placeholders = []
+    for i, table in enumerate(tables):
+        placeholder = f"##TABLE_PLACEHOLDER_{i}##"
+        table_placeholders.append((placeholder, str(table)))
+        table.replace_with(placeholder)
 
     # For all other tags, replace them with their text content
-    for tag in soup.find_all(True):  # True means "find all tags"
-        if tag.name != "ref":  # Skip <ref> tags (already removed)
-            tag.replace_with(tag.get_text())
+    for tag in soup.find_all(True):
+        tag.replace_with(tag.get_text())
 
     # Get the cleaned text
     cleaned_text = str(soup)
+
+    # Reinsert the tables
+    for placeholder, table_html in table_placeholders:
+        cleaned_text = cleaned_text.replace(placeholder, table_html)
 
     # Add a newline after each title
     final_text = re.sub(

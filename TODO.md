@@ -13,3 +13,18 @@ grande a un modelo pequeño. Si finetuneamos algo podriamos acabar con un modelo
 * Quizas para articulos pequeños tiene sentido usar un modelo muy pequeño
 * Para medianos uno mas grande
 * Y para los grandes con tablas y demas, usar uno de los de pago.
+
+
+* Buscar algun tipo de fuzzy matcher para el HTML tags (?)
+
+* Revisar como podemos arreglar mediante regex los titulos
+
+===
+  Fer ===
+
+* Añadir espacios "\n" entre titulos y parrafos y tablas y luego quitarlos para que quede homogenizado
+* Pasar a markdwon lo que se pueda de forma deterministica (titulos?)
+* LLM para limpiar el texto de cosas que no haya podido pillar los approaches deterministicos
+
+
+La idea es limpiar lo mas posible el dato, luego seria revisado por un LLM
