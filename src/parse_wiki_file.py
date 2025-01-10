@@ -9,6 +9,8 @@ import wikitextparser as wtp
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
+from src.utils.wiki_table import wiki_table_to_html
+
 
 def fetch_article_by_id(
     filename: Union[str, Path], target_id: int, domain: str, clean_text: bool = False
@@ -85,7 +87,7 @@ def _clean_article_text(article_text: str) -> str:
     # Parse the wikitext and convert it to plain text
     article_text_parsed = wtp.parse(article_text)
     article_text_plain = article_text_parsed.plain_text(
-        # replace_tables=False
+        replace_tables=wiki_table_to_html
     )
 
     # Parse the HTML text using BeautifulSoup
