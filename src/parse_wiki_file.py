@@ -101,7 +101,7 @@ def _clean_article_text(article_text: str) -> str:
     for ref in soup.find_all("sup"):
         ref.decompose()
 
-    # Remove all <ref> tags and their contents
+    # Remove all <sub> tags and their contents
     for ref in soup.find_all("sub"):
         ref.decompose()
 
@@ -109,9 +109,16 @@ def _clean_article_text(article_text: str) -> str:
     tables = soup.find_all("table")
     table_placeholders = []
     for i, table in enumerate(tables):
-        placeholder = f"##TABLE_PLACEHOLDER_{i}##"
+        placeholder = f"\n##TABLE_PLACEHOLDER_{i}##\n"
         table_placeholders.append((placeholder, str(table)))
         table.replace_with(placeholder)
+
+    # Extract and store all <syntaxhighlight> tags (to avoid being removed by BS4)
+    syntax_highlight_placeholders = []
+    for i, syntaxhighlight in enumerate(soup.find_all("syntaxhighlight")):
+        placeholder = f"\n##SYNTAXHIGHLIGHT_PLACEHOLDER_{i}##\n"
+        syntax_highlight_placeholders.append((placeholder, str(syntaxhighlight)))
+        syntaxhighlight.replace_with(placeholder)
 
     # For all other tags, replace them with their text content
     for tag in soup.find_all(True):
@@ -120,16 +127,26 @@ def _clean_article_text(article_text: str) -> str:
     # Get the cleaned text
     cleaned_text = str(soup)
 
-    # Reinsert the tables
-    for placeholder, table_html in table_placeholders:
-        cleaned_text = cleaned_text.replace(placeholder, table_html)
-
-    # Add a newline after each title
-    final_text = re.sub(
-        r"={1,6}\s*([^=]+)\s*={1,6}", lambda match: match.group(0) + "\n", cleaned_text
+    # Separate titles using Regex (this could affect HTML tables)
+    pattern = r"(^|\n)(={1,6})\s*([^=\n]+?)\s*\2(\n|$)"
+    replacement = (
+        lambda match: f"{match.group(1)}\n\n{match.group(2)}{match.group(3)}"
+        f"{match.group(2)}\n\n{match.group(4)}"
     )
+    cleaned_text = re.sub(pattern, replacement, cleaned_text)
 
-    return final_text
+    # 2 newlines max
+    cleaned_text = re.sub(r"\n{3,}", "\n\n", cleaned_text)
+
+    # Reinsert the tables with newlines around them
+    for placeholder, table_html in table_placeholders:
+        cleaned_text = cleaned_text.replace(placeholder, f"\n{table_html}\n")
+
+    # Reinsert the <syntaxhighlight> tags with newlines around them
+    for placeholder, syntaxhighlight_html in syntax_highlight_placeholders:
+        cleaned_text = cleaned_text.replace(placeholder, f"\n{syntaxhighlight_html}\n")
+
+    return cleaned_text
 
 
 def _generate_url(title: str, domain: str) -> str:
@@ -236,11 +253,13 @@ if __name__ == "__main__":
     raw_path = Path("../data/raw")
     input_file = "articles.xml.bz2"
     input_path = raw_path / input_file
-    output_path = Path("../data/processed/articles.parquet")
+    output_path = Path("../data/parsed/articles.parquet")
     domain = "simple"
 
     # Example 1: Fetch a specific article by ID and clean its text
-    target_article_id = 3077  # Replace with the desired article ID
+    # target_article_id = 3077 # Article with multiple tables
+    # target_article_id = 44678 # Article with code blocks
+    target_article_id = 431  # canada table error
     article = fetch_article_by_id(
         filename=input_path, target_id=target_article_id, domain=domain, clean_text=True
     )
@@ -252,7 +271,7 @@ if __name__ == "__main__":
     else:
         print(f"Article with ID {target_article_id} not found.")
 
-    # # Example 2: Process all articles, clean their text, and save to Parquet
-    # process_articles_to_parquet(
-    #     input_path=input_path, output_path=output_path, domain=domain, clean_text=True
-    # )
+    # Example 2: Process all articles, clean their text, and save to Parquet
+    process_articles_to_parquet(
+        input_path=input_path, output_path=output_path, domain=domain, clean_text=True
+    )

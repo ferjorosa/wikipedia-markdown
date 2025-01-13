@@ -28,3 +28,7 @@ grande a un modelo pequeño. Si finetuneamos algo podriamos acabar con un modelo
 
 
 La idea es limpiar lo mas posible el dato, luego seria revisado por un LLM
+
+------
+
+Guardar los articulos que se parsean en una DB en vez de parquet (para evit)

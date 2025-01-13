@@ -34,6 +34,10 @@ def wiki_table_to_html(wiki_table: Union[Table, str]) -> str:
 
     for row in mw_node.contents.nodes:
 
+        # The row is not a proper wiki_table node, so ignore
+        if not hasattr(row, "wiki_markup"):
+            continue
+
         # The header loop will not be necessary
         if row.wiki_markup == "|-":
             # Mark that the first row has been encountered
