@@ -31,4 +31,13 @@ La idea es limpiar lo mas posible el dato, luego seria revisado por un LLM
 
 ------
 
-Guardar los articulos que se parsean en una DB en vez de parquet (para evit)
+Guardar los articulos que se parsean en una DB en vez de parquet
+(para evitar que si falla el proceso se pierda el trabajo y para un mejor storage de la info,
+no vas a tener un parquet de 60GB)
+
+
+-----
+
+* Añadir espacios "\n" entre titulos y parrafos y tablas y luego quitarlos para que quede homogenizado
+* Guardar los articulos que se parsean en una DB en vez de parquet (para evitar que si falla el proceso se pierda el trabajo y para un mejor storage de la info,  no vas a tener un parquet de 60GB)
+* Revisar lo de divide by sections de forma que no  parta por la mitad. Habria que asegurarse que es un titulo (dejar una marca?)

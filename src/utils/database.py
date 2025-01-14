@@ -14,6 +14,7 @@ def initialize_db(db_path: Union[str, Path]):
                                     or Path object.
     """
     # Convert db_path to a Path object if it's a string
+    # Convert db_path to a Path object if it's a string
     db_path = Path(db_path) if isinstance(db_path, str) else db_path
 
     # Create the directory if it doesn't exist
@@ -34,7 +35,9 @@ def initialize_db(db_path: Union[str, Path]):
                 markdown_text TEXT,
                 raw_text_tokens INTEGER,
                 markdown_text_tokens INTEGER,
-                model TEXT
+                model TEXT,
+                llm_cleaned_text TEXT,
+                llm_cleaned_text_tokens INTEGER
             )
             """
         )
@@ -78,6 +81,8 @@ def insert_row(
     raw_text_tokens: int,
     markdown_text_tokens: int,
     model: str,
+    llm_cleaned_text: str,
+    llm_cleaned_text_tokens: int,
     debug: bool = False,
 ):
     """
@@ -93,6 +98,8 @@ def insert_row(
         raw_text_tokens (int): Token count of raw text.
         markdown_text_tokens (int): Token count of Markdown text.
         model (str): Name of the model.
+        llm_cleaned_text (str): Cleaned text after LLM processing.
+        llm_cleaned_text_tokens (int): Token count of cleaned text.
         debug (bool): If True, print debug messages (default: False).
     """
     conn = sqlite3.connect(db_path)
@@ -101,9 +108,10 @@ def insert_row(
         """
         INSERT OR IGNORE INTO articles (
             id, title, url, raw_text, markdown_text,
-            raw_text_tokens, markdown_text_tokens, model
+            raw_text_tokens, markdown_text_tokens, model,
+            llm_cleaned_text, llm_cleaned_text_tokens
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
             id,
@@ -114,6 +122,8 @@ def insert_row(
             raw_text_tokens,
             markdown_text_tokens,
             model,
+            llm_cleaned_text,
+            llm_cleaned_text_tokens,
         ),
     )
     if cursor.rowcount > 0:

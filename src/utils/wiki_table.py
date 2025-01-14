@@ -178,10 +178,4 @@ def wiki_table_to_html(wiki_table: Union[Table, str]) -> str:
     result.append("</table>")
     html_table = "".join(result)
 
-    # # Parse the HTML string using BeautifulSoup
-    # soup = BeautifulSoup(html_table, 'html.parser')
-    #
-    # # Prettify the HTML (indent and format)
-    # pretty_html_table = soup.prettify()
-
     return html_table

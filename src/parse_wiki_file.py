@@ -32,7 +32,7 @@ def fetch_article_by_id(
     ):  # Don't clean text here
         if article and int(article["id"]) == target_id:
             if clean_text:
-                article["text"] = _clean_article_text(article["text"])
+                article["raw_text"] = _clean_article_text(article["raw_text"])
             return article
     print(f"Article with ID {target_id} not found in the dump file.")
     return None
@@ -184,7 +184,9 @@ def _iterate_articles(
             elif "</page>" in line:
                 parsed_article = _parse_article(article, domain)
                 if parsed_article and clean_text:
-                    parsed_article["text"] = _clean_article_text(parsed_article["text"])
+                    parsed_article["raw_text"] = _clean_article_text(
+                        parsed_article["raw_text"]
+                    )
                 yield parsed_article
             else:
                 article += line
@@ -216,10 +218,10 @@ def _parse_article(text: str, domain: str) -> Optional[Dict[str, str]]:
         url = _generate_url(title, domain)
 
         return {
-            "title": title.strip(),
-            "text": content,
             "id": article_id.strip(),
+            "title": title.strip(),
             "url": url,
+            "raw_text": content,
         }
     except Exception as e:
         print(f"Error parsing article: {e}")
@@ -264,10 +266,10 @@ if __name__ == "__main__":
         filename=input_path, target_id=target_article_id, domain=domain, clean_text=True
     )
     if article:
-        print(f"Title: {article['title']}")
         print(f"ID: {article['id']}")
+        print(f"Title: {article['title']}")
         print(f"URL: {article['url']}")
-        print(f"Cleaned Text:\n{article['text']}")
+        print(f"Parsed Text:\n{article['raw_text']}")
     else:
         print(f"Article with ID {target_article_id} not found.")
 
