@@ -1,25 +1,33 @@
 import bz2
+import os
 import re
+import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from os import getenv
 from pathlib import Path
 from time import sleep
-from typing import Dict, Iterator, Optional, Union
+from typing import Any, Dict, Iterator, Optional, Union
 
-import pandas as pd
 import wikitextparser as wtp
 from bs4 import BeautifulSoup
+from dotenv import load_dotenv
 from tqdm import tqdm
+from transformers import AutoTokenizer, PreTrainedTokenizerFast
 
+from src.utils.database import initialize_db, insert_raw_text_batch, insert_raw_text_row
+from src.utils.tokenizer import count_tokens
 from src.utils.wiki_table import wiki_table_to_html
+from src.utils.yaml import load_yaml
 
 
-def fetch_article_by_id(
-    filename: Union[str, Path], target_id: int, domain: str, clean_text: bool = False
+def parse_article(
+    file_path: Union[str, Path], target_id: int, domain: str, clean_text: bool = False
 ) -> Optional[Dict[str, str]]:
     """Retrieve the text, title, and ID of a specific Wikipedia article by its ID
     from a bz2-compressed XML dump file.
 
     Args:
-        filename: Path to the bz2 compressed XML dump file.
+        file_path: Path to the bz2 compressed XML dump file.
         target_id: The ID of the article to retrieve.
         clean_text: If True, clean the article text before returning.
 
@@ -28,7 +36,7 @@ def fetch_article_by_id(
         otherwise None.
     """
     for article in _iterate_articles(
-        filename, domain, clean_text=False
+        file_path, domain, clean_text=False
     ):  # Don't clean text here
         if article and int(article["id"]) == target_id:
             if clean_text:
@@ -38,45 +46,236 @@ def fetch_article_by_id(
     return None
 
 
-def process_articles_to_parquet(
-    input_path: Union[str, Path],
-    output_path: Union[str, Path],
+def parse_all_articles_sequentially(
+    file_path: Union[str, Path],
+    db_path: Union[str, Path],
     domain: str,
-    clean_text: bool = False,
+    tokenizer: PreTrainedTokenizerFast,
+    clean_text: bool = True,
 ) -> None:
     """Process all articles in a Wikipedia XML dump file and save them into a
-    Parquet file.
+    SQLite database."""
+    initialize_db(db_path)
 
-    Args:
-        input_path: Path to the bzip2 compressed XML dump file.
-        output_path: Path to the output Parquet file.
-        clean_text: If True, clean the article text before saving.
-    """
-    input_path, output_path = Path(input_path), Path(output_path)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-
-    total_pages = _count_pages_in_file(input_path)
+    total_pages = _count_pages_in_file(file_path)
     print(f"Total unique articles to process: {total_pages}")
-    sleep(0.1)  # Allow print to be shown before tqdm
+    sleep(0.1)  # Allow print to be shown before processing
 
-    articles = []
     for article in tqdm(
-        _iterate_articles(input_path, domain, clean_text=clean_text),
+        _iterate_articles(file_path, domain, clean_text=clean_text),
         total=total_pages,
         desc="Processing articles",
         unit="article",
     ):
         if article:
-            articles.append(article)
+            insert_raw_text_row(
+                db_path=db_path,
+                id=article["id"],
+                title=article["title"],
+                url=article["url"],
+                raw_text=article["raw_text"],
+                raw_text_tokens=count_tokens(tokenizer, article["raw_text"]),
+            )
 
-    df = pd.DataFrame(articles)
-    df["id"] = df["id"].astype(int)
-    df.to_parquet(output_path, index=False)
-    print(f"Processed data saved to {output_path}")
+    print(f"Processed data saved to {db_path}")
+
+
+def parse_all_articles_parallel(
+    file_path: Union[str, Path],
+    db_path: Union[str, Path],
+    domain: str,
+    tokenizer: PreTrainedTokenizerFast,
+    clean_text: bool = True,
+    max_workers: int = 4,
+) -> None:
+    """Process all articles in a Wikipedia XML dump file and save them into a
+    SQLite database using a thread pool."""
+    initialize_db(db_path)
+
+    def process_and_insert_article(article_text: str) -> None:
+        """Helper function to process a single article and insert it into the
+        database."""
+        parsed_article = _parse_article(article_text, domain)
+        if parsed_article:
+            if clean_text:
+                parsed_article["raw_text"] = _clean_article_text(
+                    parsed_article["raw_text"]
+                )
+            insert_raw_text_row(
+                db_path=db_path,
+                id=parsed_article["id"],
+                title=parsed_article["title"],
+                url=parsed_article["url"],
+                raw_text=parsed_article["raw_text"],
+                raw_text_tokens=count_tokens(tokenizer, parsed_article["raw_text"]),
+            )
+
+    with (
+        bz2.open(file_path, "rt", encoding="utf-8") as infile,
+        ThreadPoolExecutor(max_workers=max_workers) as executor,
+    ):
+        article: list[str] = []
+        in_page = False
+        futures = []  # Store futures for processed articles
+
+        for line in infile:
+            if "<page>" in line:
+                article = []  # Reset the article buffer
+                in_page = True
+            elif "</page>" in line and in_page:
+                # Submit the article for processing and insertion
+                article_text = "".join(article)
+                futures.append(
+                    executor.submit(process_and_insert_article, article_text)
+                )
+                in_page = False
+            elif in_page:
+                article.append(line)  # Accumulate lines within <page> and </page>
+
+        # Wait for all futures to complete
+        for future in as_completed(futures):
+            future.result()  # This will raise any exceptions that occurred
+
+
+def parse_all_articles_parallel_tqdm(
+    file_path: Union[str, Path],
+    db_path: Union[str, Path],
+    domain: str,
+    tokenizer: PreTrainedTokenizerFast,
+    clean_text: bool = True,
+    max_workers: int = 4,
+) -> None:
+    """Process all articles in a Wikipedia XML dump file and save them into a
+    SQLite database using a thread pool."""
+    initialize_db(db_path)
+
+    total_pages = _count_pages_in_file(file_path)
+    print(f"Total unique articles to process: {total_pages}")
+    sleep(0.1)  # Allow print to be shown before processing
+
+    def process_and_insert_article(article_text: str) -> None:
+        """Helper function to process a single article and insert it into the
+        database."""
+        parsed_article = _parse_article(article_text, domain)
+        if parsed_article:
+            if clean_text:
+                parsed_article["raw_text"] = _clean_article_text(
+                    parsed_article["raw_text"]
+                )
+            insert_raw_text_row(
+                db_path=db_path,
+                id=parsed_article["id"],
+                title=parsed_article["title"],
+                url=parsed_article["url"],
+                raw_text=parsed_article["raw_text"],
+                raw_text_tokens=count_tokens(tokenizer, parsed_article["raw_text"]),
+            )
+
+    with (
+        bz2.open(file_path, "rt", encoding="utf-8") as infile,
+        ThreadPoolExecutor(max_workers=max_workers) as executor,
+    ):
+        article: list[str] = []
+        in_page = False
+        futures = []  # Store futures for processed articles
+
+        with tqdm(total=total_pages, desc="Processing Articles") as pbar:
+            for line in infile:
+                if "<page>" in line:
+                    article = []  # Reset the article buffer
+                    in_page = True
+                elif "</page>" in line and in_page:
+                    # Submit the article for processing and insertion
+                    article_text = "".join(article)
+                    future = executor.submit(process_and_insert_article, article_text)
+                    future.add_done_callback(
+                        lambda _: pbar.update(1)
+                    )  # Update progress bar when future is done
+                    futures.append(future)
+                    in_page = False
+                elif in_page:
+                    article.append(line)  # Accumulate lines within <page> and </page>
+
+            # Wait for all futures to complete
+            for future in as_completed(futures):
+                future.result()  # This will raise any exceptions that occurred
+
+
+def parse_all_articles_parallel_tqdm_batch(
+    file_path: Union[str, Path],
+    db_path: Union[str, Path],
+    domain: str,
+    tokenizer: PreTrainedTokenizerFast,
+    clean_text: bool = True,
+    max_workers: int = 4,
+    batch_size: int = 1000,
+    debug: bool = False,
+) -> None:
+    """Process all articles in a Wikipedia XML dump file and save them into a
+    SQLite database using a thread pool."""
+    initialize_db(db_path)
+
+    total_pages = _count_pages_in_file(file_path)
+    print(f"Total unique articles to process: {total_pages}")
+    sleep(0.1)  # Allow print to be shown before processing
+
+    def process_article(article_text: str) -> Optional[Dict[str, Union[int, str]]]:
+        """Helper function to process a single article and return its data."""
+        parsed_article = _parse_article(article_text, domain)
+        if parsed_article:
+            if clean_text:
+                parsed_article["raw_text"] = _clean_article_text(
+                    parsed_article["raw_text"]
+                )
+            parsed_article["raw_text_tokens"] = count_tokens(
+                tokenizer, parsed_article["raw_text"]
+            )
+            return parsed_article
+        return None
+
+    with (
+        bz2.open(file_path, "rt", encoding="utf-8") as infile,
+        ThreadPoolExecutor(max_workers=max_workers) as executor,
+    ):
+        article: list[str] = []
+        in_page = False
+        futures = []  # Store futures for processed articles
+        batch = []  # Accumulate articles for batch insertion
+
+        with tqdm(total=total_pages, desc="Processing Articles") as pbar:
+            for line in infile:
+                if "<page>" in line:
+                    article = []  # Reset the article buffer
+                    in_page = True
+                elif "</page>" in line and in_page:
+                    # Submit the article for processing
+                    article_text = "".join(article)
+                    future = executor.submit(process_article, article_text)
+                    future.add_done_callback(
+                        lambda _: pbar.update(1)
+                    )  # Update progress bar when future is done
+                    futures.append(future)
+                    in_page = False
+                elif in_page:
+                    article.append(line)  # Accumulate lines within <page> and </page>
+
+            # Process futures and accumulate articles into batches
+            for future in as_completed(futures):
+                result = future.result()
+                if result:
+                    batch.append(result)
+                    if len(batch) >= batch_size:
+                        insert_raw_text_batch(db_path, batch, debug=debug)
+                        batch = []  # Reset the batch
+
+            # Insert any remaining articles in the last batch
+            if batch:
+                insert_raw_text_batch(db_path, batch, debug=debug)
 
 
 def _clean_article_text(article_text: str) -> str:
-    """Clean the text of a Wikipedia article by removing wikitext markup and HTML tags.
+    """Clean the text of a Wikipedia article by removing wikitext markup and
+    HTML tags.
 
     Args:
         article_text: The raw text of the article.
@@ -192,7 +391,7 @@ def _iterate_articles(
                 article += line
 
 
-def _parse_article(text: str, domain: str) -> Optional[Dict[str, str]]:
+def _parse_article(text: str, domain: str) -> Optional[Dict[str, Any]]:
     """Parse a Wikipedia article chunk and extract relevant information.
 
     Args:
@@ -218,7 +417,7 @@ def _parse_article(text: str, domain: str) -> Optional[Dict[str, str]]:
         url = _generate_url(title, domain)
 
         return {
-            "id": article_id.strip(),
+            "id": int(article_id.strip()),
             "title": title.strip(),
             "url": url,
             "raw_text": content,
@@ -252,18 +451,18 @@ def _count_pages_in_file(filename: Union[str, Path]) -> int:
 
 if __name__ == "__main__":
     # Define paths and target article ID
-    raw_path = Path("../data/raw")
-    input_file = "articles.xml.bz2"
-    input_path = raw_path / input_file
-    output_path = Path("../data/parsed/articles.parquet")
+    base_path = Path("../")
+    config = load_yaml(base_path / "run_config.yaml")
+    file_path = base_path / config["data_folder"] / config["raw_file"]
+    db_path = base_path / config["data_folder"] / config["db_file"]
     domain = "simple"
 
     # Example 1: Fetch a specific article by ID and clean its text
     # target_article_id = 3077 # Article with multiple tables
     # target_article_id = 44678 # Article with code blocks
     target_article_id = 431  # canada table error
-    article = fetch_article_by_id(
-        filename=input_path, target_id=target_article_id, domain=domain, clean_text=True
+    article = parse_article(
+        file_path=file_path, target_id=target_article_id, domain=domain, clean_text=True
     )
     if article:
         print(f"ID: {article['id']}")
@@ -273,7 +472,33 @@ if __name__ == "__main__":
     else:
         print(f"Article with ID {target_article_id} not found.")
 
-    # Example 2: Process all articles, clean their text, and save to Parquet
-    process_articles_to_parquet(
-        input_path=input_path, output_path=output_path, domain=domain, clean_text=True
+    # Example 2: Process all articles, clean their text, and save to DB
+    load_dotenv()
+    huggingface_token = getenv("HUGGINGFACE_TOKEN")
+    tokenizer = AutoTokenizer.from_pretrained(
+        config["model_hf"], token=huggingface_token
     )
+    # Disable tokenizer parallelism (going to be called withing ThreadPool)
+    os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
+    # Record the start time
+    start_time = time.perf_counter()
+
+    # Call the function
+    cpu_count = os.cpu_count() or 4
+    parse_all_articles_parallel_tqdm_batch(
+        file_path=file_path,
+        db_path=db_path,
+        domain=domain,
+        tokenizer=tokenizer,
+        clean_text=False,
+        max_workers=cpu_count * 2,
+        batch_size=1000,
+    )
+
+    # Record the end time
+    end_time = time.perf_counter()
+
+    # Calculate and print the total time taken
+    time_taken = end_time - start_time
+    print(f"Time taken to execute: {time_taken:.2f} seconds")
