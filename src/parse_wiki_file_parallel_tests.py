@@ -5,7 +5,9 @@ import bz2
 import os
 import re
 import time
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
+from functools import partial
+from multiprocessing import Process, Queue
 from os import getenv
 from pathlib import Path
 from time import sleep
@@ -49,115 +51,56 @@ def parse_article(
     return None
 
 
-def parse_all_articles_parallel_tqdm(
+def process_article(
+    article_text: str,
+    domain: str,
+    clean_text: bool,
+    tokenizer_name: str,
+    huggingface_token: str,
+) -> Optional[Dict[str, Union[int, str]]]:
+    """Helper function to process a single article and return its data."""
+    # Initialize the tokenizer within the worker process
+    tokenizer = AutoTokenizer.from_pretrained(tokenizer_name, token=huggingface_token)
+    parsed_article = _parse_article_text(article_text, domain)
+    if parsed_article:
+        if clean_text:
+            parsed_article["raw_text"] = _clean_article_text(parsed_article["raw_text"])
+        parsed_article["raw_text_tokens"] = count_tokens(
+            tokenizer, parsed_article["raw_text"]
+        )
+        return parsed_article
+    return None
+
+
+def parse_all_articles_process(
     file_path: Union[str, Path],
     db_path: Union[str, Path],
     domain: str,
-    tokenizer: PreTrainedTokenizerFast,
-    clean_text: bool = True,
-    max_workers: int = 4,
-) -> None:
-    """Process all articles in a Wikipedia XML dump file and save them into a
-    SQLite database using a thread pool."""
-    initialize_db(db_path)
-
-    total_pages = _count_pages_in_file(file_path)
-    print(f"Total unique articles to process: {total_pages}")
-    sleep(0.1)  # Allow print to be shown before processing
-
-    def process_and_insert_article(article_text: str) -> None:
-        """Helper function to process a single article and insert it into the
-        database."""
-        parsed_article = _parse_article_text(article_text, domain)
-        if parsed_article:
-            if clean_text:
-                parsed_article["raw_text"] = _clean_article_text(
-                    parsed_article["raw_text"]
-                )
-            insert_raw_text_row(
-                db_path=db_path,
-                id=parsed_article["id"],
-                title=parsed_article["title"],
-                url=parsed_article["url"],
-                raw_text=parsed_article["raw_text"],
-                raw_text_tokens=count_tokens(tokenizer, parsed_article["raw_text"]),
-            )
-
-    with (
-        bz2.open(file_path, "rt", encoding="utf-8") as infile,
-        ThreadPoolExecutor(max_workers=max_workers) as executor,
-    ):
-        article: list[str] = []
-        in_page = False
-        futures = []  # Store futures for processed articles
-
-        with tqdm(total=total_pages, desc="Processing Articles") as pbar:
-            for line in infile:
-                if "<page>" in line:
-                    article = []  # Reset the article buffer
-                    in_page = True
-                elif "</page>" in line and in_page:
-                    # Submit the article for processing and insertion
-                    article_text = "".join(article)
-                    future = executor.submit(process_and_insert_article, article_text)
-                    future.add_done_callback(
-                        lambda _: pbar.update(1)
-                    )  # Update progress bar when future is done
-                    futures.append(future)
-                    in_page = False
-                elif in_page:
-                    article.append(line)  # Accumulate lines within <page> and </page>
-
-            # Wait for all futures to complete
-            for future in as_completed(futures):
-                future.result()  # This will raise any exceptions that occurred
-
-
-# TODO: Does not work
-# TODO: Either way, the idea is to make it a process with batches
-# First we generate the batch and then we pass it to a process...
-def parse_all_articles(
-    file_path: Union[str, Path],
-    db_path: Union[str, Path],
-    domain: str,
-    tokenizer: PreTrainedTokenizerFast,
+    tokenizer_name: str,
+    huggingface_token: str,
     clean_text: bool = True,
     max_workers: int = 4,
     batch_size: int = 1000,
     debug: bool = False,
 ) -> None:
     """Process all articles in a Wikipedia XML dump file and save them into a
-    SQLite database using a thread pool."""
+    SQLite database using a process pool."""
     initialize_db(db_path)
 
     total_pages = _count_pages_in_file(file_path)
     print(f"Total unique articles to process: {total_pages}")
     sleep(0.1)  # Allow print to be shown before processing
 
-    def process_article(article_text: str) -> Optional[Dict[str, Union[int, str]]]:
-        """Helper function to process a single article and return its data."""
-        parsed_article = _parse_article_text(article_text, domain)
-        if parsed_article:
-            if clean_text:
-                parsed_article["raw_text"] = _clean_article_text(
-                    parsed_article["raw_text"]
-                )
-            parsed_article["raw_text_tokens"] = count_tokens(
-                tokenizer, parsed_article["raw_text"]
-            )
-            return parsed_article
-        return None
-
     with (
         bz2.open(file_path, "rt", encoding="utf-8") as infile,
-        ThreadPoolExecutor(max_workers=max_workers) as executor,
+        ProcessPoolExecutor(max_workers=max_workers) as executor,
     ):
         article: list[str] = []
         in_page = False
         futures = []  # Store futures for processed articles
         batch = []  # Accumulate articles for batch insertion
 
-        with tqdm(total=total_pages, desc="Processing Articles") as pbar:
+        with tqdm(total=total_pages, desc="Parsing Articles") as pbar:
             for line in infile:
                 if "<page>" in line:
                     article = []  # Reset the article buffer
@@ -165,10 +108,17 @@ def parse_all_articles(
                 elif "</page>" in line and in_page:
                     # Submit the article for processing
                     article_text = "".join(article)
-                    future = executor.submit(process_article, article_text)
+                    future = executor.submit(
+                        process_article,
+                        article_text,
+                        domain,
+                        clean_text,
+                        tokenizer_name,
+                        huggingface_token,
+                    )
                     future.add_done_callback(
                         lambda _: pbar.update(1)
-                    )  # Update progress bar when future is done
+                    )  # Update progress bar
                     futures.append(future)
                     in_page = False
                 elif in_page:
@@ -375,17 +325,17 @@ if __name__ == "__main__":
     # Example 1: Fetch a specific article by ID and clean its text
     # target_article_id = 3077 # Article with multiple tables
     # target_article_id = 44678 # Article with code blocks
-    # target_article_id = 431  # canada table error
-    # article = parse_article(
-    #     file_path=file_path, target_id=target_article_id, domain=domain, clean_text=True
-    # )
-    # if article:
-    #     print(f"ID: {article['id']}")
-    #     print(f"Title: {article['title']}")
-    #     print(f"URL: {article['url']}")
-    #     print(f"Parsed Text:\n{article['raw_text']}")
-    # else:
-    #     print(f"Article with ID {target_article_id} not found.")
+    target_article_id = 431  # canada table error
+    article = parse_article(
+        file_path=file_path, target_id=target_article_id, domain=domain, clean_text=True
+    )
+    if article:
+        print(f"ID: {article['id']}")
+        print(f"Title: {article['title']}")
+        print(f"URL: {article['url']}")
+        print(f"Parsed Text:\n{article['raw_text']}")
+    else:
+        print(f"Article with ID {target_article_id} not found.")
 
     # Example 2: Process all articles, clean their text, and save to DB
     load_dotenv()
@@ -401,14 +351,15 @@ if __name__ == "__main__":
 
     # Call the function
     cpu_count = os.cpu_count() or 4
-    parse_all_articles_parallel_tqdm(
+    parse_all_articles_process(
         file_path=file_path,
         db_path=db_path,
         domain=domain,
-        tokenizer=tokenizer,
+        tokenizer_name=config["model_hf"],
+        huggingface_token=getenv("HUGGINGFACE_TOKEN"),
         clean_text=True,
         max_workers=cpu_count - 1,
-        # batch_size=1000,
+        batch_size=1000,
     )
 
     # Record the end time

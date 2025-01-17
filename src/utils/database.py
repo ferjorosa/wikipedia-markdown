@@ -1,6 +1,6 @@
 import sqlite3
 from pathlib import Path
-from typing import Dict, List, Union
+from typing import Any, Dict, List, Union
 
 import pandas as pd
 
@@ -43,6 +43,47 @@ def initialize_db(db_path: Union[str, Path]):
         conn.commit()
         conn.close()
         print(f"Database initialized successfully at {db_path}")
+
+
+def get_all_ids(db_path: Union[str, Path]) -> List[int]:
+    """
+    Retrieve all article IDs from the database.
+
+    Args:
+        db_path (Union[str, Path]): Path to the SQLite database file.
+
+    Returns:
+        List[int]: List of article IDs.
+    """
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    cursor.execute("SELECT id FROM articles")
+    ids = [row[0] for row in cursor.fetchall()]
+    conn.close()
+    return ids
+
+
+def get_rows_from_ids(
+    db_path: Union[str, Path], ids: List[int]
+) -> List[Dict[str, Any]]:
+    """
+    Retrieve rows from the database for the given list of IDs.
+
+    Args:
+        db_path (Union[str, Path]): Path to the SQLite database file.
+        ids (List[int]): List of article IDs to retrieve.
+
+    Returns:
+        List[Dict[str, Any]]: List of rows as dictionaries.
+    """
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    placeholders = ",".join(["?"] * len(ids))
+    query = f"SELECT id, raw_text FROM articles WHERE id IN ({placeholders})"
+    cursor.execute(query, ids)
+    rows = [{"id": row[0], "raw_text": row[1]} for row in cursor.fetchall()]
+    conn.close()
+    return rows
 
 
 def filter_rows_in_db(
@@ -229,79 +270,121 @@ def insert_raw_text_batch(
         conn.close()
 
 
-def update_markdown_text_row(
+def update_markdown_text_batch(
     db_path: Union[str, Path],
-    id: int,
-    markdown_text: str,
-    markdown_text_tokens: int,
+    articles: List[Dict[str, Union[int, str]]],
     debug: bool = False,
-):
+) -> None:
     """
-    Update an existing row in the SQLite database with new markdown text and
-    token count.
+    Update a batch of articles in the database with their Markdown text and token count.
 
     Args:
         db_path (Union[str, Path]): Path to the SQLite database file.
-        id (int): Unique identifier for the row to update.
-        markdown_text (str): Updated Markdown text.
-        markdown_text_tokens (int): Updated token count for the Markdown text.
+        articles (List[Dict]): List of articles to update, where each article is a
+                               dictionary with keys: id, markdown_text, markdown_text_tokens.
         debug (bool): If True, print debug messages (default: False).
     """
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
-    cursor.execute(
-        """
-        UPDATE articles
-        SET markdown_text = ?, markdown_text_tokens = ?
-        WHERE id = ?
-        """,
-        (markdown_text, markdown_text_tokens, id),
-    )
-    if cursor.rowcount > 0:
+    try:
+        cursor.executemany(
+            """
+            UPDATE articles
+            SET markdown_text = ?, markdown_text_tokens = ?
+            WHERE id = ?
+            """,
+            [
+                (
+                    article["markdown_text"],
+                    article["markdown_text_tokens"],
+                    article["id"],
+                )
+                for article in articles
+            ],
+        )
+        conn.commit()
         if debug:
-            print(f"Row with id {id} updated successfully.")
-    else:
+            print(f"Updated {len(articles)} articles in batch.")
+    except Exception as e:
         if debug:
-            print(f"No row found with id {id}. No changes were made.")
-    conn.commit()
-    conn.close()
+            print(f"Error updating batch: {e}")
+    finally:
+        conn.close()
 
 
-def update_llm_cleaned_row(
-    db_path: Union[str, Path],
-    id: int,
-    model: str,
-    llm_cleaned_text: str,
-    llm_cleaned_text_tokens: int,
-    debug: bool = False,
-):
-    """
-    Update an existing row in the SQLite database with new LLM-cleaned text and
-    related fields.
-
-    Args:
-        db_path (Union[str, Path]): Path to the SQLite database file.
-        id (int): Unique identifier for the row to update.
-        model (str): Name of the model used for cleaning.
-        llm_cleaned_text (str): Updated cleaned text after LLM processing.
-        llm_cleaned_text_tokens (int): Updated token count for the cleaned text.
-        debug (bool): If True, print debug messages (default: False).
-    """
-    conn = sqlite3.connect(db_path)
-    cursor = conn.cursor()
-    cursor.execute(
-        """
-        UPDATE articles
-        SET model = ?, llm_cleaned_text = ?, llm_cleaned_text_tokens = ?
-        WHERE id = ?
-        """,
-        (model, llm_cleaned_text, llm_cleaned_text_tokens, id),
-    )
-    if cursor.rowcount > 0:
-        if debug:
-            print(f"Row with id {id} updated successfully with LLM-cleaned data.")
-    else:
-        if debug:
-            print(f"No row found with id {id}. No changes were made.")
-    conn.commit()
-    conn.close()
+# def update_markdown_text_row(
+#     db_path: Union[str, Path],
+#     id: int,
+#     markdown_text: str,
+#     markdown_text_tokens: int,
+#     debug: bool = False,
+# ):
+#     """
+#     Update an existing row in the SQLite database with new markdown text and
+#     token count.
+#
+#     Args:
+#         db_path (Union[str, Path]): Path to the SQLite database file.
+#         id (int): Unique identifier for the row to update.
+#         markdown_text (str): Updated Markdown text.
+#         markdown_text_tokens (int): Updated token count for the Markdown text.
+#         debug (bool): If True, print debug messages (default: False).
+#     """
+#     conn = sqlite3.connect(db_path)
+#     cursor = conn.cursor()
+#     cursor.execute(
+#         """
+#         UPDATE articles
+#         SET markdown_text = ?, markdown_text_tokens = ?
+#         WHERE id = ?
+#         """,
+#         (markdown_text, markdown_text_tokens, id),
+#     )
+#     if cursor.rowcount > 0:
+#         if debug:
+#             print(f"Row with id {id} updated successfully.")
+#     else:
+#         if debug:
+#             print(f"No row found with id {id}. No changes were made.")
+#     conn.commit()
+#     conn.close()
+#
+#
+# def update_llm_cleaned_row(
+#     db_path: Union[str, Path],
+#     id: int,
+#     model: str,
+#     llm_cleaned_text: str,
+#     llm_cleaned_text_tokens: int,
+#     debug: bool = False,
+# ):
+#     """
+#     Update an existing row in the SQLite database with new LLM-cleaned text and
+#     related fields.
+#
+#     Args:
+#         db_path (Union[str, Path]): Path to the SQLite database file.
+#         id (int): Unique identifier for the row to update.
+#         model (str): Name of the model used for cleaning.
+#         llm_cleaned_text (str): Updated cleaned text after LLM processing.
+#         llm_cleaned_text_tokens (int): Updated token count for the cleaned text.
+#         debug (bool): If True, print debug messages (default: False).
+#     """
+#     conn = sqlite3.connect(db_path)
+#     cursor = conn.cursor()
+#     cursor.execute(
+#         """
+#         UPDATE articles
+#         SET model = ?, llm_cleaned_text = ?, llm_cleaned_text_tokens = ?
+#         WHERE id = ?
+#         """,
+#         (model, llm_cleaned_text, llm_cleaned_text_tokens, id),
+#     )
+#     if cursor.rowcount > 0:
+#         if debug:
+#             print(f"Row with id {id} updated successfully with LLM-cleaned data.")
+#     else:
+#         if debug:
+#             print(f"No row found with id {id}. No changes were made.")
+#     conn.commit()
+#     conn.close()

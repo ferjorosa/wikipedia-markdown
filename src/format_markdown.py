@@ -1,35 +1,105 @@
+import os
 import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from os import getenv
 from pathlib import Path
-from typing import Union
+from typing import Any, Dict, Optional, Union
 
 import pandas as pd
 import swifter  # noqa: F401
 from tqdm import tqdm
+from transformers import AutoTokenizer, PreTrainedTokenizerFast
+
+from src.utils.database import (
+    get_all_ids,
+    get_rows_from_ids,
+    update_markdown_text_batch,
+)
+from src.utils.tokenizer import count_tokens
+from src.utils.yaml import load_yaml
 
 
-def to_markdown(input: Union[str, pd.DataFrame], parallel: bool = False):
+def to_markdown(input: Union[str, pd.DataFrame]):
     if isinstance(input, str):
         return _format(input)
 
     elif isinstance(input, pd.DataFrame):
-        if "raw_text" not in input.columns:
-            raise ValueError("DataFrame must contain a 'raw_text' column")
-
-        if parallel:
-            # Use swifter for parallel processing with tqdm progress bar
-            tqdm.pandas(desc="Processing")  # Enable tqdm for pandas
-            input["markdown_text"] = (
-                input["raw_text"].swifter.progress_bar(True).apply(_format)
-            )
-        else:
-            # Sequential processing with tqdm progress bar
-            tqdm.pandas(desc="Processing")  # Enable tqdm for pandas
-            input["markdown_text"] = input["raw_text"].progress_apply(_format)
+        tqdm.pandas(desc="Processing")  # Enable tqdm for pandas
+        input["markdown_text"] = input["raw_text"].progress_apply(_format)
 
         return input
 
     else:
         raise TypeError("Input must be a string or a pandas DataFrame")
+
+
+def format_article(article: str) -> str:
+    return _format(input)
+
+
+def format_all_articles(
+    db_path: Union[str, Path],
+    tokenizer: PreTrainedTokenizerFast,
+    max_workers: int = 4,
+    batch_size: int = 1000,
+    debug: bool = False,
+):
+    # Step 1: Get all article IDs from the database
+    all_ids = get_all_ids(db_path)
+    print(f"Total articles to process: {len(all_ids)}")
+
+    # Step 2: Split IDs into batches
+    batches = [all_ids[i : i + batch_size] for i in range(0, len(all_ids), batch_size)]
+
+    # Step 3: Process each batch
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        for batch in tqdm(batches, desc="Formatting Article Batches"):
+            # Step 3.1: Retrieve rows for the current chunk
+            rows = get_rows_from_ids(db_path, batch)
+
+            # Step 3.2: Format articles to Markdown
+            formatted_articles = []
+            futures = []
+            for row in rows:
+                future = executor.submit(_format_article_text, row, tokenizer)
+                futures.append(future)
+
+            # Step 3.3: Collect results
+            for future in as_completed(futures):
+                result = future.result()
+                if result:
+                    formatted_articles.append(result)
+
+            # Step 3.4: Update the database with formatted articles
+            if formatted_articles:
+                update_markdown_text_batch(db_path, formatted_articles, debug=debug)
+
+
+def _format_article_text(
+    row: Dict[str, Any], tokenizer: PreTrainedTokenizerFast
+) -> Optional[Dict[str, Union[int, str]]]:
+    """
+    Format a single article to Markdown and count its tokens.
+
+    Args:
+        row (Dict[str, Any]): Dictionary containing the article's id and raw_text.
+        tokenizer (PreTrainedTokenizerFast): Tokenizer for counting tokens.
+
+    Returns:
+        Optional[Dict[str, Union[int, str]]]: Dictionary containing the article's id,
+                                              markdown_text, and markdown_text_tokens.
+    """
+    try:
+        markdown_text = to_markdown(row["raw_text"])
+        markdown_text_tokens = count_tokens(tokenizer, markdown_text)
+        return {
+            "id": row["id"],
+            "markdown_text": markdown_text,
+            "markdown_text_tokens": markdown_text_tokens,
+        }
+    except Exception as e:
+        print(f"Error formatting article {row['id']}: {e}")
+        return None
 
 
 def _format(cleaned_text: str) -> str:
@@ -101,20 +171,40 @@ def _fix_nested_lists(text: str) -> str:
 
 
 if __name__ == "__main__":
-    input_path = Path("../data/parsed/articles.parquet")
-    output_path = Path("../data/parsed/articles_markdown.parquet")
-    target_article_id = 1
+    # Define paths and tokenizer
+    base_path = Path("../")
+    config = load_yaml(base_path / "run_config.yaml")
+    db_path = base_path / config["data_folder"] / config["db_file"]
+    huggingface_token = getenv("HUGGINGFACE_TOKEN")
+    tokenizer = AutoTokenizer.from_pretrained(
+        config["model_hf"], token=huggingface_token
+    )
 
-    # Load the DataFrame
-    df = pd.read_parquet(input_path)
+    # Format all articles
+    cpu_count = os.cpu_count() or 4
+    format_all_articles(
+        db_path=db_path,
+        tokenizer=tokenizer,
+        max_workers=8,
+        batch_size=1000,
+        debug=True,
+    )
 
-    # Example 1: Fetch a specific article by ID and clean its text
-    article = df[df["id"] == target_article_id].iloc[0]
-    markdown_text = to_markdown(article["raw_text"])
-    print(markdown_text)
-
-    # Example 2: Process all articles
-    print("Processing all articles...")
-    df = to_markdown(df, parallel=True)  # Use parallel processing
-    df.to_parquet(output_path)
-    print(f"Processed data saved to {output_path}")
+# if __name__ == "__main__":
+#     input_path = Path("../data/parsed/articles.parquet")
+#     output_path = Path("../data/parsed/articles_markdown.parquet")
+#     target_article_id = 1
+#
+#     # Load the DataFrame
+#     df = pd.read_parquet(input_path)
+#
+#     # Example 1: Fetch a specific article by ID and clean its text
+#     article = df[df["id"] == target_article_id].iloc[0]
+#     markdown_text = to_markdown(article["raw_text"])
+#     print(markdown_text)
+#
+#     # Example 2: Process all articles
+#     print("Processing all articles...")
+#     df = to_markdown(df)
+#     df.to_parquet(output_path)
+#     print(f"Processed data saved to {output_path}")
