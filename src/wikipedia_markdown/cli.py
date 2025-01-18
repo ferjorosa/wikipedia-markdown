@@ -10,7 +10,7 @@ from wikipedia_markdown.format_markdown import format_all_articles
 
 
 @click.command()
-def download():
+def download_wiki_dump():
     """Download the latest Wikipedia dump."""
     config_path = Path("run_config.yaml")
     config = load_yaml(config_path)
@@ -36,29 +36,7 @@ def download():
 
 
 @click.command()
-def format_markdown():
-    """Format the markdown of all articles in the database."""
-    config_path = Path("run_config.yaml")
-    config = load_yaml(config_path)
-
-    data_folder = Path(config["data_folder"])
-    db_path = data_folder / config["db_file"]
-    huggingface_token = os.getenv("HUGGINGFACE_TOKEN")
-    tokenizer = AutoTokenizer.from_pretrained(config["model_hf"], token=huggingface_token)
-
-    # Format all articles
-    format_all_articles(
-        db_path=db_path,
-        tokenizer=tokenizer,
-        max_workers=8,
-        batch_size=1000,
-        debug=True,
-    )
-    click.echo("Markdown formatting completed.")
-
-
-@click.command()
-def parse_wiki():
+def parse_wiki_dump():
     """Parse the downloaded Wikipedia dump and save articles to the database."""
     config_path = Path("run_config.yaml")
     config = load_yaml(config_path)
@@ -80,16 +58,29 @@ def parse_wiki():
         max_workers=os.cpu_count() or 4,
     )
     click.echo("Wikipedia dump parsing completed.")
+    click.echo(f"Database Path: {db_path}")
 
 
-# Add commands to the CLI
-if __name__ == "__main__":
-    # Use Click's command invocation
-    if len(os.sys.argv) > 1 and os.sys.argv[1] == "download":
-        download()
-    elif len(os.sys.argv) > 1 and os.sys.argv[1] == "format-markdown":
-        format_markdown()
-    elif len(os.sys.argv) > 1 and os.sys.argv[1] == "parse-wiki":
-        parse_wiki()
-    else:
-        click.echo("Usage: cli.py [download | format-markdown | parse-wiki]")
+@click.command()
+def format_articles():
+    """Format the markdown of all articles in the database."""
+    config_path = Path("run_config.yaml")
+    config = load_yaml(config_path)
+
+    data_folder = Path(config["data_folder"])
+    db_path = data_folder / config["db_file"]
+    huggingface_token = os.getenv("HUGGINGFACE_TOKEN")
+    tokenizer = AutoTokenizer.from_pretrained(config["model_hf"], token=huggingface_token)
+
+    # Format all articles
+    format_all_articles(
+        db_path=db_path,
+        tokenizer=tokenizer,
+        max_workers=8,
+        batch_size=1000,
+        debug=True,
+    )
+    click.echo("Markdown formatting completed.")
+    click.echo(f"Database Path: {db_path}")
+
+

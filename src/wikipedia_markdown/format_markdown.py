@@ -38,7 +38,11 @@ def format_all_articles(
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         for batch in tqdm(batches, desc="Formatting Article Batches"):
             # Step 3.1: Retrieve rows for the current chunk
-            rows = get_rows_from_ids(db_path, batch)
+            rows = get_rows_from_ids(
+                db_path=db_path,
+                ids=batch,
+                columns=["id", "raw_text"]
+            )
 
             # Step 3.2: Format articles to Markdown
             formatted_articles = []

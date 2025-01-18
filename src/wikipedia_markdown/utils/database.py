@@ -64,7 +64,9 @@ def get_all_ids(db_path: Union[str, Path]) -> List[int]:
 
 
 def get_rows_from_ids(
-    db_path: Union[str, Path], ids: List[int]
+    db_path: Union[str, Path],
+    ids: List[int],
+    columns: List[str] = None
 ) -> List[Dict[str, Any]]:
     """
     Retrieve rows from the database for the given list of IDs.
@@ -72,18 +74,52 @@ def get_rows_from_ids(
     Args:
         db_path (Union[str, Path]): Path to the SQLite database file.
         ids (List[int]): List of article IDs to retrieve.
+        columns (List[str]): List of columns to retrieve. If None, retrieves all columns.
 
     Returns:
         List[Dict[str, Any]]: List of rows as dictionaries.
     """
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
+
+    valid_columns = [
+        "id",
+        "title",
+        "url",
+        "raw_text",
+        "raw_text_tokens",
+        "markdown_text",
+        "markdown_text_tokens",
+        "model",
+        "llm_cleaned_text",
+        "llm_cleaned_text_tokens"
+    ]
+
+    # If no columns are specified, select all columns
+    if columns is None:
+        columns = valid_columns
+    else:
+        columns = [col for col in columns if col in valid_columns]
+
+    # Construct the SQL query
+    columns_str = ", ".join(columns)
     placeholders = ",".join(["?"] * len(ids))
-    query = f"SELECT id, raw_text FROM articles WHERE id IN ({placeholders})"
+    query = f"SELECT {columns_str} FROM articles WHERE id IN ({placeholders})"
+
+    # Execute the query
     cursor.execute(query, ids)
-    rows = [{"id": row[0], "raw_text": row[1]} for row in cursor.fetchall()]
+    rows = cursor.fetchall()
+
+    # Convert rows to a list of dictionaries
+    result = []
+    for row in rows:
+        row_dict = {}
+        for idx, col in enumerate(columns):
+            row_dict[col] = row[idx]
+        result.append(row_dict)
+
     conn.close()
-    return rows
+    return result
 
 
 def filter_rows_in_db(

@@ -6,12 +6,12 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
 from transformers import PreTrainedTokenizerFast
 
-from src.utils.tokenizer import count_tokens
+from wikipedia_markdown.utils.tokenizer import count_tokens
 
 
 def clean_text(
     model_openrouter: str,
-    raw_text: str,
+    text: str,
     template: str,
 ) -> str:
     """
@@ -22,25 +22,25 @@ def clean_text(
     Args:
         model_openrouter (str): The model to use for the transformation, as
         provided by OpenRouter.
-        raw_text (str): The input text to be formatted into markdown.
+        text (str): The input text to be cleaned.
         template (str): The template to use for constructing the prompt sent to
         the model.
 
     Returns:
         str: The formatted markdown text after applying LLM-based formatting.
     """
-    return _apply_llm_formatting(model_openrouter, raw_text, template)
+    return _apply_llm_formatting(model_openrouter, text, template)
 
 
 def clean_long_text(
     model_openrouter: str,
-    raw_text: str,
+    text: str,
     template: str,
     tokenizer: PreTrainedTokenizerFast,
     max_tokens: int,
 ):
     # Step 1: Divide the text into sections
-    sections = _divide_into_sections(raw_text)
+    sections = _divide_into_sections(text)
 
     # Step 2: Estimate the number of tokens for each section
     section_token_counts = [count_tokens(tokenizer, section) for section in sections]
@@ -108,29 +108,68 @@ def _apply_llm_formatting(model_openrouter: str, text: str, template: str) -> st
     formatted_text_llm = chain.invoke(input={"text": text})
     return formatted_text_llm
 
-
 def _divide_into_sections(text: str) -> list:
     """
-    Divides the input text into sections based on titles marked with `=` signs.
+    Divides the input text into sections based on Markdown headings marked with `#` signs.
 
     Args:
         text (str): The input text to be divided into sections.
 
     Returns:
-        list: A list of sections, where each section includes the title and its
+        list: A list of sections, where each section includes the heading and its
               related content.
     """
-    # Regex to identify sections based on titles marked with `=` signs
-    section_regex = r"(={1,6}\s*[^=]+\s*={1,6})"
+    # Regex to identify sections based on Markdown headings marked with `#` signs
+    # This regex allows for optional leading whitespace before the `#` characters
+    section_regex = r"(^\s*#+\s?.*$)"
 
     # Split the text into sections using the regex
-    sections = re.split(section_regex, text)
+    sections = re.split(section_regex, text, flags=re.MULTILINE)
 
-    # Combine titles with their directly related content
+    # Combine headings with their directly related content
     combined_sections = []
     for i in range(1, len(sections), 2):  # Start from 1 to skip the first empty element
-        title = sections[i]
-        content = sections[i + 1].strip()  # Remove leading/trailing whitespace
-        combined_sections.append(f"{title}\n{content}")
+        heading = sections[i].strip()  # Remove leading/trailing whitespace from the heading
+        content = sections[i + 1].strip()  # Remove leading/trailing whitespace from the content
+        combined_sections.append(f"{heading}\n{content}")
 
     return combined_sections
+
+if __name__ == "__main__":
+
+    # Example text with Markdown headings
+    text = """
+        # Heading 1
+        This is the content for heading 1.
+
+        ## Heading 2
+        This is the content for heading 2.
+
+        ###Heading 3 (missing space)
+
+        ###### Heading 4
+        This is the content for heading 4.
+
+        ####### Heading 5 (too many #)
+        This is invalid because Markdown only allows up to 6 # characters.
+
+        ##     Heading 6 (extra space)
+        This is valid because extra spaces after ## are allowed.
+
+        #
+        This is a heading with no text.
+
+        ##
+        ##
+    """
+
+    # Divide the text into sections
+    sections = _divide_into_sections(text)
+
+    # Print each section
+    for section in sections:
+        print(section)
+        print("---")
+
+    # Example: cleaning long article text
+
