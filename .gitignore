@@ -15,3 +15,6 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+
+# Package
+**/wikipedia_markdown.egg-info/

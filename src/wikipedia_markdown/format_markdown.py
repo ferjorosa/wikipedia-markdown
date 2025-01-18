@@ -5,36 +5,19 @@ from os import getenv
 from pathlib import Path
 from typing import Any, Dict, Optional, Union
 
-import pandas as pd
-import swifter  # noqa: F401
 from tqdm import tqdm
 from transformers import AutoTokenizer, PreTrainedTokenizerFast
 
-from src.utils.database import (
+from wikipedia_markdown.utils.database import (
     get_all_ids,
     get_rows_from_ids,
     update_markdown_text_batch,
 )
-from src.utils.tokenizer import count_tokens
-from src.utils.yaml import load_yaml
-
-
-def to_markdown(input: Union[str, pd.DataFrame]):
-    if isinstance(input, str):
-        return _format(input)
-
-    elif isinstance(input, pd.DataFrame):
-        tqdm.pandas(desc="Processing")  # Enable tqdm for pandas
-        input["markdown_text"] = input["raw_text"].progress_apply(_format)
-
-        return input
-
-    else:
-        raise TypeError("Input must be a string or a pandas DataFrame")
-
+from wikipedia_markdown.utils.tokenizer import count_tokens
+from wikipedia_markdown.utils.yaml import load_yaml
 
 def format_article(article: str) -> str:
-    return _format(input)
+    return _format(article)
 
 
 def format_all_articles(
@@ -90,7 +73,7 @@ def _format_article_text(
                                               markdown_text, and markdown_text_tokens.
     """
     try:
-        markdown_text = to_markdown(row["raw_text"])
+        markdown_text = _format(row["raw_text"])
         markdown_text_tokens = count_tokens(tokenizer, markdown_text)
         return {
             "id": row["id"],
@@ -189,22 +172,3 @@ if __name__ == "__main__":
         batch_size=1000,
         debug=True,
     )
-
-# if __name__ == "__main__":
-#     input_path = Path("../data/parsed/articles.parquet")
-#     output_path = Path("../data/parsed/articles_markdown.parquet")
-#     target_article_id = 1
-#
-#     # Load the DataFrame
-#     df = pd.read_parquet(input_path)
-#
-#     # Example 1: Fetch a specific article by ID and clean its text
-#     article = df[df["id"] == target_article_id].iloc[0]
-#     markdown_text = to_markdown(article["raw_text"])
-#     print(markdown_text)
-#
-#     # Example 2: Process all articles
-#     print("Processing all articles...")
-#     df = to_markdown(df)
-#     df.to_parquet(output_path)
-#     print(f"Processed data saved to {output_path}")
