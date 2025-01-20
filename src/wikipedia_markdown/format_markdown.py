@@ -159,7 +159,7 @@ def _fix_nested_lists(text: str) -> str:
 
 if __name__ == "__main__":
     # Define paths and tokenizer
-    base_path = Path("../")
+    base_path = Path("../../")
     config = load_yaml(base_path / "run_config.yaml")
     db_path = base_path / config["data_folder"] / config["db_file"]
     huggingface_token = getenv("HUGGINGFACE_TOKEN")

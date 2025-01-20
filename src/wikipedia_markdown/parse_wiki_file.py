@@ -366,7 +366,7 @@ def _count_pages_in_file(filename: Union[str, Path]) -> int:
 
 if __name__ == "__main__":
     # Define paths and target article ID
-    base_path = Path("../")
+    base_path = Path("../../")
     config = load_yaml(base_path / "run_config.yaml")
     file_path = base_path / config["data_folder"] / config["raw_file"]
     db_path = base_path / config["data_folder"] / config["db_file"]

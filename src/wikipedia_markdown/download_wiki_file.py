@@ -89,7 +89,7 @@ def download_wiki_dump(
 
 if __name__ == "__main__":
     file_path, metadata_file_path = download_wiki_dump(
-        folder_path=Path("../data/raw"), file_name="articles.xml.bz2"
+        folder_path=Path("../../data/raw"), file_name="articles.xml.bz2"
     )
     print(f"Downloaded file: {file_path}")
     print(f"Metadata saved in: {metadata_file_path}")

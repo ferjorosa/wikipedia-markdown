@@ -1,33 +1,4 @@
 clean_markdown: |
-  Follow the instructions below to transform the provided text into clean, well-structured markdown. Ensure the output adheres strictly to the guidelines.
-
-  ### Instructions:
-
-  1. **Remove Unnecessary Metadata**:
-     - Strip out metadata, timestamps, or any non-content-related information (e.g., `[edit]`, `[update]`).
-
-  2. **Remove Broken Links and Images**:
-     - Remove any broken links, image tags, or non-functional media references.
-
-  3. **Remove Citations and References**:
-     - Remove inline citations (e.g., `[1]`, `[citation needed]`).
-     - Remove entire reference sections (e.g., `## References`).
-
-  4. **Handle HTML/XML Tags**:
-     - Remove HTML/XML tags, but retain the text content if the tag contains meaningful text (e.g., `<p>Hello</p>` → "Hello").
-     - **Exception**: Do not remove structural HTML tags like `<td>`, `<tr>`, `<th>`, `<table>`, or attributes like `rowspan` and `colspan`.
-
-  ### Additional Notes:
-
-  - **Strict Adherence**: Follow the instructions precisely. Do not add extra commentary or deviate from the rules.
-  - **Preserve Meaning**: Ensure the transformed text retains the original meaning and structure.
-  - **Handle Edge Cases Gracefully**: If the content is ambiguous or unclear, make a best-effort attempt to format it according to the rules.
-
-  ### Text to Transform:
-
-  {text}
-
-clean_markdown_2: |
   Transform the provided text into clean, well-structured markdown while being **completely faithful to the original content**. Only make changes when explicitly required by the rules below:
 
   ### Rules:
