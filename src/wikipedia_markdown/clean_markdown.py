@@ -3,6 +3,7 @@ import os
 from tqdm import tqdm
 from os import getenv
 from pathlib import Path
+from typing import Optional
 from dotenv import load_dotenv
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -21,15 +22,15 @@ from wikipedia_markdown.utils.database import (
 )
 
 
-def clean(
+def clean_articles(
     db_path: Path,
     model_openrouter: str,
     tokenizer: PreTrainedTokenizerFast,
     prompt: str,
     max_workers: int,
-    max_rows: int,
-    max_tokens: int = 5000,  # Default token limit for clean_text vs clean_long_text
-    debug: bool = False,  # Debug flag for update_markdown_text_row
+    max_tokens: int,
+    max_rows: Optional[int] = None,
+    debug: bool = False,
 ):
     """
     Cleans the `markdown_text` for rows in the database where `llm_cleaned_text` is empty or NULL.
@@ -40,8 +41,8 @@ def clean(
         model_openrouter (str): The model to use for cleaning, as provided by OpenRouter.
         tokenizer (PreTrainedTokenizerFast): Tokenizer to count tokens in the text.
         max_workers (int): Maximum number of workers for parallel processing.
-        max_rows (int): Maximum number of rows to process.
         max_tokens (int): Token limit to decide between `clean_text` and `clean_long_text`.
+        max_rows (int): Maximum number of rows to process.
         debug (bool): If True, print debug messages for database updates (default: False).
     """
     # Get the list of IDs where `llm_cleaned_text` is empty or NULL
@@ -172,7 +173,7 @@ def clean_long_text(
     return processed_text
 
 
-def _apply_llm_formatting(model_openrouter: str, text: str, template: str) -> str:
+def _apply_llm_formatting(model_openrouter: str, text: str, template: str, request_timeout: int = 300) -> str:
     """
     A private method to apply LLM-based formatting to the text.
 
@@ -192,6 +193,7 @@ def _apply_llm_formatting(model_openrouter: str, text: str, template: str) -> st
         openai_api_key=getenv("OPENROUTER_API_KEY"),
         openai_api_base="https://openrouter.ai/api/v1",
         model_name=model_openrouter,
+        request_timeout=request_timeout,
     )
 
     # Initialize the output parser
@@ -297,11 +299,11 @@ if __name__ == "__main__":
     else:
         print("Database file does not exist.")
 
-    # model_openrouter = "deepseek/deepseek-chat"
-    # model_hf = "deepseek-ai/DeepSeek-V3"
+    model_openrouter = "deepseek/deepseek-chat"
+    model_hf = "deepseek-ai/DeepSeek-V3"
 
-    model_openrouter = "openai/gpt-4o-mini"
-    model_hf = "Xenova/gpt-4o"
+    # model_openrouter = "openai/gpt-4o-mini"
+    # model_hf = "Xenova/gpt-4o"
 
     tokenizer = AutoTokenizer.from_pretrained(model_hf, token=huggingface_token)
 
@@ -347,13 +349,13 @@ if __name__ == "__main__":
     os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
     # Clean one article using the clean method
-    clean(
+    clean_articles(
         db_path=db_path,
         model_openrouter=model_openrouter,
         tokenizer=tokenizer,
         prompt=prompts["clean_markdown"],
         max_workers=32,  # Number of parallel workers
-        max_rows=1,  # Only clean one article
+        max_rows=2,  # Only clean one article
         max_tokens=5000,  # Token limit for clean_text vs clean_long_text
         debug=True,  # Print debug messages
     )

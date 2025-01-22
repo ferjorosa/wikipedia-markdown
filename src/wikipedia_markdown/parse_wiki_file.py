@@ -49,7 +49,7 @@ def parse_article(
     return None
 
 
-def parse_all_articles(
+def parse_articles(
     file_path: Union[str, Path],
     db_path: Union[str, Path],
     domain: str,
@@ -401,7 +401,7 @@ if __name__ == "__main__":
 
     # Call the function
     cpu_count = os.cpu_count() or 4
-    parse_all_articles(
+    parse_articles(
         file_path=file_path,
         db_path=db_path,
         domain=domain,

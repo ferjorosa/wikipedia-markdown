@@ -12,11 +12,13 @@ dependencies = [
     "tqdm>=4.67.1",
     "transformers>=4.47.1",
     "wikitextparser>=0.56.3",
+    "mwparserfromhell>=0.6.6",
     "beautifulsoup4>=4.12.3",
     "pandas>=2.2.3",
     "langchain>=0.3.14",
     "langchain-openai>=0.3.0",
     "jupyter>=1.1.1",
+    "lxml>=5.3.0",
 ]
 
 [dependency-groups]
@@ -29,7 +31,10 @@ requires = ["setuptools>=42"]
 build-backend = "setuptools.build_meta"
 
 [project.scripts]
-wiki-download = "wikipedia_markdown.cli:download"
+download-wiki = "wikipedia_markdown.cli:download"
+parse-wiki = "wikipedia_markdown.cli:parse"
+format-markdown = "wikipedia_markdown.cli:format"
+clean-markdown = "wikipedia_markdown.cli:clean"
 
 [tool.ruff]
 line-length = 88  # Matches Black's default

@@ -20,7 +20,7 @@ def format_article(article: str) -> str:
     return _format(article)
 
 
-def format_all_articles(
+def format_articles(
     db_path: Union[str, Path],
     tokenizer: PreTrainedTokenizerFast,
     max_workers: int = 4,
@@ -169,7 +169,7 @@ if __name__ == "__main__":
 
     # Format all articles
     cpu_count = os.cpu_count() or 4
-    format_all_articles(
+    format_articles(
         db_path=db_path,
         tokenizer=tokenizer,
         max_workers=8,

@@ -45,3 +45,8 @@ no vas a tener un parquet de 60GB)
 -----
 
 Hacer limpieza de codigo y en temas de DB quedarnos solo con las soluciones que inserten en batch y procesen con tqdm
+
+
+-----
+
+Hay veces que el modelo te añade ```markdown``` al principio. Es por ello que hemos revisado manualmente todos los casos
