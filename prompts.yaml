@@ -40,14 +40,15 @@ clean_markdown: |
   Clean the following markdown text while being **completely faithful to the original content**. Only make changes when explicitly required by the rules below:
 
   ### Rules:
-  1. **Remove Metadata**: Remove timestamps, non-content info (e.g., `[edit]`, `[update]`), or any extraneous annotations.
-  2. **Remove Broken Links/Images**: Delete broken links, non-functional images, or media tags. Preserve valid links and images.
-  3. **Remove Citations/References**: Remove inline citations (e.g., `[1]`, `[citation needed]`) and entire reference sections (e.g., `## References`).
-  4. **Remove Category Tags**: Remove Wikipedia-style category tags (e.g., `Category:Basic English 850 words`, `Category:Atmosphere`).
-  5. **Remove Related Pages Section**: Delete entire sections titled "Related Pages" or similar.
-  6. **Handle HTML/XML Tags**: Remove HTML/XML tags but keep meaningful text (e.g., `<p>Hello</p>` → "Hello"). Preserve structural tags like `<table>`, `<td>`, and attributes like `rowspan`, `colspan`.
-  7. **Fix Redundant Whitespace**: Remove extra blank lines and unnecessary spaces, but preserve intentional spacing (e.g., line breaks in paragraphs or lists).
-  8. **Preserve Everything Else**: Do not modify headings, lists, code blocks, tables, or any other content unless it violates the above rules.
+  1. **Remove Metadata**: Timestamps, non-content info (e.g., `[edit]`, `[update]`), or extraneous annotations.  
+  2. **Remove Broken Links/Images**: Delete broken links, non-functional images, or media tags. Preserve valid links and images (e.g., Lund-04-Kathedrale-1975-gje.jpg).  
+  3. **Remove Citations/References**: Inline citations (e.g., `[1]`, `[citation needed]`) and entire reference sections (e.g., `## References`).  
+  4. **Remove Category Tags**: Wikipedia-style category tags (e.g., `Category:Basic English 850 words`).  
+  5. **Remove Related Pages Section**: Entire sections titled "Related Pages" or similar.  
+  6. **Remove Gallery Section**: Entire sections titled "Gallery" or similar, including image text (e.g., `Image:Saint Peter's Square.jpg`, `File:Transverse wave.png`).  
+  7. **Handle HTML/XML Tags**: Remove HTML/XML tags but keep meaningful text. Preserve structural tags like `<table>`, `<td>`, and attributes like `rowspan`, `colspan`.  
+  8. **Fix Redundant Whitespace**: Remove extra blank lines and unnecessary spaces, but preserve intentional spacing.  
+  9. **Preserve Everything Else**: Do not modify headings, lists, code blocks, tables, or any other content unless it violates the above rules.
 
   ### Important:
   - **Be Faithful**: Copy the text exactly as-is unless one of the above rules applies.
