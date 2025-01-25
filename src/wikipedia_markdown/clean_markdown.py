@@ -1,25 +1,24 @@
-import re
 import os
-from tqdm import tqdm
+import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from os import getenv
 from pathlib import Path
 from typing import Optional
-from dotenv import load_dotenv
-from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from transformers import AutoTokenizer
+from dotenv import load_dotenv
 from langchain.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
-from transformers import PreTrainedTokenizerFast
+from tqdm import tqdm
+from transformers import AutoTokenizer, PreTrainedTokenizerFast
 
-from wikipedia_markdown.utils.tokenizer import count_tokens
-from wikipedia_markdown.utils.yaml import load_yaml
 from wikipedia_markdown.utils.database import (
     get_ids_with_empty_llm_cleaned_text,
     get_rows_from_ids,
-    update_llm_cleaned_row
+    update_llm_cleaned_row,
 )
+from wikipedia_markdown.utils.tokenizer import count_tokens
+from wikipedia_markdown.utils.yaml import load_yaml
 
 
 def clean_articles(
@@ -33,17 +32,22 @@ def clean_articles(
     debug: bool = False,
 ):
     """
-    Cleans the `markdown_text` for rows in the database where `llm_cleaned_text` is empty or NULL.
-    Uses `clean_text` for short texts and `clean_long_text` for long texts.
+    Cleans the `markdown_text` for rows in the database where `llm_cleaned_text`
+    is empty or NULL. Uses `clean_text` for short texts and `clean_long_text` for
+    long texts.
 
     Args:
         db_path (Path): Path to the SQLite database file.
-        model_openrouter (str): The model to use for cleaning, as provided by OpenRouter.
-        tokenizer (PreTrainedTokenizerFast): Tokenizer to count tokens in the text.
+        model_openrouter (str): The model to use for cleaning, as provided by
+        OpenRouter.
+        tokenizer (PreTrainedTokenizerFast): Tokenizer to count tokens in the
+        text.
         max_workers (int): Maximum number of workers for parallel processing.
-        max_tokens (int): Token limit to decide between `clean_text` and `clean_long_text`.
+        max_tokens (int): Token limit to decide between `clean_text` and
+        `clean_long_text`.
         max_rows (int): Maximum number of rows to process.
-        debug (bool): If True, print debug messages for database updates (default: False).
+        debug (bool): If True, print debug messages for database updates
+        (default: False).
     """
     # Get the list of IDs where `llm_cleaned_text` is empty or NULL
     ids = get_ids_with_empty_llm_cleaned_text(db_path, limit=max_rows)
@@ -90,7 +94,9 @@ def clean_articles(
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = [executor.submit(process_row, row) for row in rows]
 
-        for future in tqdm(as_completed(futures), total=len(futures), desc="Cleaning rows"):
+        for future in tqdm(
+            as_completed(futures), total=len(futures), desc="Cleaning rows"
+        ):
             result = future.result()
             if result:
                 row_id, cleaned_text, cleaned_text_tokens = result
@@ -173,7 +179,9 @@ def clean_long_text(
     return processed_text
 
 
-def _apply_llm_formatting(model_openrouter: str, text: str, template: str, request_timeout: int = 300) -> str:
+def _apply_llm_formatting(
+    model_openrouter: str, text: str, template: str, request_timeout: int = 300
+) -> str:
     """
     A private method to apply LLM-based formatting to the text.
 
@@ -206,9 +214,11 @@ def _apply_llm_formatting(model_openrouter: str, text: str, template: str, reque
     formatted_text_llm = chain.invoke(input={"text": text})
     return formatted_text_llm
 
+
 def _divide_into_sections(text: str) -> list:
     """
-    Divides the input text into sections based on Markdown headings marked with `#` signs.
+    Divides the input text into sections based on Markdown headings marked with
+    `#` signs.
 
     Args:
         text (str): The input text to be divided into sections.
@@ -227,11 +237,16 @@ def _divide_into_sections(text: str) -> list:
     # Combine headings with their directly related content
     combined_sections = []
     for i in range(1, len(sections), 2):  # Start from 1 to skip the first empty element
-        heading = sections[i].strip()  # Remove leading/trailing whitespace from the heading
-        content = sections[i + 1].strip()  # Remove leading/trailing whitespace from the content
+        heading = sections[
+            i
+        ].strip()  # Remove leading/trailing whitespace from the heading
+        content = sections[
+            i + 1
+        ].strip()  # Remove leading/trailing whitespace from the content
         combined_sections.append(f"{heading}\n{content}")
 
     return combined_sections
+
 
 if __name__ == "__main__":
 
@@ -282,7 +297,7 @@ if __name__ == "__main__":
     base_path = Path("../../")  # One level up from the current working directory
 
     # Load the YAML configuration
-    config_path = base_path / "run_config.yaml"
+    config_path = base_path / "config.yaml"
     config = load_yaml(config_path)
 
     # Construct the full path to the database file
@@ -309,7 +324,7 @@ if __name__ == "__main__":
 
     prompts = load_yaml(base_path / "prompts.yaml")
 
-    article_id = 61541 # Bobby Robson
+    article_id = 61541  # Bobby Robson
     # article_id = 17 # Adobe Illustrator
     # article_id = 1 # April
 

@@ -16,6 +16,7 @@ from wikipedia_markdown.utils.database import (
 from wikipedia_markdown.utils.tokenizer import count_tokens
 from wikipedia_markdown.utils.yaml import load_yaml
 
+
 def format_article(article: str) -> str:
     return _format(article)
 
@@ -39,9 +40,7 @@ def format_articles(
         for batch in tqdm(batches, desc="Formatting Article Batches"):
             # Step 3.1: Retrieve rows for the current chunk
             rows = get_rows_from_ids(
-                db_path=db_path,
-                ids=batch,
-                columns=["id", "raw_text"]
+                db_path=db_path, ids=batch, columns=["id", "raw_text"]
             )
 
             # Step 3.2: Format articles to Markdown
@@ -103,6 +102,9 @@ def _format(cleaned_text: str) -> str:
     cleaned_text = _format_code_blocks(cleaned_text)
     cleaned_text = _fix_nested_lists(cleaned_text)
 
+    # Remove all newlines before the FIRST title that starts with #
+    cleaned_text = re.sub(r"^\n*(?=#)", "", cleaned_text)
+
     return cleaned_text
 
 
@@ -160,7 +162,7 @@ def _fix_nested_lists(text: str) -> str:
 if __name__ == "__main__":
     # Define paths and tokenizer
     base_path = Path("../../")
-    config = load_yaml(base_path / "run_config.yaml")
+    config = load_yaml(base_path / "config.yaml")
     db_path = base_path / config["data_folder"] / config["db_file"]
     huggingface_token = getenv("HUGGINGFACE_TOKEN")
     tokenizer = AutoTokenizer.from_pretrained(
@@ -174,5 +176,5 @@ if __name__ == "__main__":
         tokenizer=tokenizer,
         max_workers=8,
         batch_size=1000,
-        debug=True,
+        debug=False,
     )

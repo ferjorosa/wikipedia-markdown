@@ -1,24 +1,26 @@
 import os
-import click
 from pathlib import Path
+
+import click
 from dotenv import load_dotenv
 from transformers import AutoTokenizer
 
-from wikipedia_markdown.utils.yaml import load_yaml
-from wikipedia_markdown.download_wiki_file import download_wiki_dump
-from wikipedia_markdown.parse_wiki_file import parse_articles
-from wikipedia_markdown.format_markdown import format_articles
 from wikipedia_markdown.clean_markdown import clean_articles
+from wikipedia_markdown.download_wiki_file import download_wiki_dump
+from wikipedia_markdown.format_markdown import format_articles
+from wikipedia_markdown.parse_wiki_file import parse_articles
+from wikipedia_markdown.utils.yaml import load_yaml
 
 # Load Local environment variables
 # - OpenRouter API Key
 # - HuggingFace API Key
 load_dotenv()
 
+
 @click.command()
 def download():
     """Download the latest Wikipedia dump."""
-    config_path = Path("run_config.yaml")
+    config_path = Path("config.yaml")
     config = load_yaml(config_path)
 
     data_folder = Path(config["data_folder"])
@@ -44,7 +46,7 @@ def download():
 @click.command()
 def parse():
     """Parse the downloaded Wikipedia dump and save articles to the database."""
-    config_path = Path("run_config.yaml")
+    config_path = Path("config.yaml")
     config = load_yaml(config_path)
 
     data_folder = Path(config["data_folder"])
@@ -52,7 +54,9 @@ def parse():
     db_path = data_folder / config["db_file"]
     domain = config["domain"]
     huggingface_token = os.getenv("HUGGINGFACE_TOKEN")
-    tokenizer = AutoTokenizer.from_pretrained(config["model_hf"], token=huggingface_token)
+    tokenizer = AutoTokenizer.from_pretrained(
+        config["model_hf"], token=huggingface_token
+    )
 
     # Parse all articles
     parse_articles(
@@ -71,24 +75,27 @@ def parse():
     "--max-workers",
     type=int,
     default=None,
-    help="Maximum number of workers for parallel processing. Defaults to the number of CPU cores."
+    help="Maximum number of workers for parallel processing. "
+    "Defaults to the number of CPU cores.",
 )
 @click.option(
     "--batch-size",
     type=int,
     default=1000,
-    help="Maximum number of rows to process. Defaults to 1000."
+    help="Maximum number of rows to process. Defaults to 1000.",
 )
 @click.command()
 def format(max_workers, batch_size):
     """Format the markdown of all articles in the database."""
-    config_path = Path("run_config.yaml")
+    config_path = Path("config.yaml")
     config = load_yaml(config_path)
 
     data_folder = Path(config["data_folder"])
     db_path = data_folder / config["db_file"]
     huggingface_token = os.getenv("HUGGINGFACE_TOKEN")
-    tokenizer = AutoTokenizer.from_pretrained(config["model_hf"], token=huggingface_token)
+    tokenizer = AutoTokenizer.from_pretrained(
+        config["model_hf"], token=huggingface_token
+    )
 
     # If max_workers is not provided, default to the number of CPU cores
     if max_workers is None:
@@ -111,20 +118,21 @@ def format(max_workers, batch_size):
     "--max-workers",
     type=int,
     default=None,
-    help="Maximum number of workers for parallel processing. Defaults to the number of CPU cores."
+    help="Maximum number of workers for parallel processing. "
+    "Defaults to the number of CPU cores.",
 )
 @click.option(
     "--max-rows",
     type=int,
     default=None,
-    help="Maximum number of rows to process. Defaults to 1000."
+    help="Maximum number of rows to process. Defaults to 1000.",
 )
 def clean(max_workers, max_rows):
     """Clean the markdown text of articles in the database."""
-    config_path = Path("run_config.yaml")
+    config_path = Path("config.yaml")
     config = load_yaml(config_path)
 
-    # Disable tokenizer parallelism (going to be called withing ThreadPool)
+    # Disable tokenizer parallelism (going to be called within ThreadPool)
     os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
     data_folder = Path(config["data_folder"])

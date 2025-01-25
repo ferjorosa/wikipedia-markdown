@@ -26,7 +26,7 @@ repos:
           - importlib-metadata>=6.0.0
         args:
           - --max-line-length=88
-          - "--ignore=I, W503"  # W503 collides with black formatting
+          - --ignore=I,W503,E203  # W503 collides with black formatting, E203 is whitespace before ':'
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.14.1
@@ -35,6 +35,8 @@ repos:
         additional_dependencies:
           - types-requests
           - types-PyYAML
+        args:
+          - --explicit-package-bases  # Add this flag to resolve the duplicate module issue
 
   - repo: https://github.com/pycqa/isort
     rev: 5.13.2

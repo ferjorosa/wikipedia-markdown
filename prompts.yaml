@@ -1,54 +1,17 @@
-format_markdown: |
-  Transform the following text into clean, well-formatted plain text by following these instructions. Return **only the formatted text** without any additional commentary, explanations, or metadata. Do **not summarize** the content; preserve all details and structure while applying the formatting rules below.
-
-  ### Instructions:
-
-  1. **Remove Non-English Characters**: Remove all characters not part of the English alphabet (e.g., Chinese, Cyrillic, or non-Latin scripts).
-  2. **Remove Strange UTF-8 Characters**: Strip out unusual or non-standard UTF-8 characters (e.g., symbols, emojis, corrupted characters).
-  3. **Remove HTML/XML Tags**: Delete all HTML/XML tags (e.g., `<div>`, `<span>`). Retain only the text content if the tag contains meaningful text (e.g., `<p>Hello</p>` → "Hello").
-  4. **Remove Image Alt Text**: Remove all alt text descriptions for images (e.g., `alt="A picture of a cat"`).
-  5. **Normalize Whitespace**: Replace multiple spaces, tabs, or newlines with a single space. Ensure proper spacing around punctuation and between words.
-  6. **Preserve Basic Formatting**:
-     - Retain paragraph breaks (double newlines) and basic punctuation (e.g., periods, commas, quotation marks).
-     - Use `\$` instead of `$` for monetary values to avoid markdown misinterpretation.
-  7. **Remove Citations and References**: Remove inline citations (e.g., `[1]`, `[citation needed]`) and reference sections (e.g., `== References ==`).
-  8. **Remove Unnecessary Metadata**: Strip out metadata, timestamps, or non-content-related information (e.g., `[edit]`, `[update]`).
-  9. **Format Tables**:
-     - Convert tables into markdown format.
-     - Include a header row and a separator row (e.g., `| --- | --- |`).
-     - Align columns neatly and remove extraneous formatting.
-  10. **Format Titles and Headings**:
-      - Convert `=` signs into Markdown headings:
-        - `= Title =` → `# Title`
-        - `== Subtitle ==` → `## Subtitle`
-        - `=== Subtitle ===` → `### Subtitle`
-      - Continue this pattern for deeper levels. Maintain the heading level specified by the number of `=` signs.
-
-  ### Additional Notes:
-
-  - **Strictly Follow Instructions**: Do not deviate from the instructions or add any extra commentary.
-  - **Preserve Original Meaning**: Ensure the transformed text retains the original meaning and structure.
-  - **Handle Edge Cases Gracefully**: If you encounter ambiguous or unclear content, make a best-effort attempt to format it according to the rules.
-
-  ### Text to Transform
-
-  {text}
-
-  ### Transformed text
-
 clean_markdown: |
   Clean the following markdown text while being **completely faithful to the original content**. Only make changes when explicitly required by the rules below:
 
   ### Rules:
-  1. **Remove Metadata**: Timestamps, non-content info (e.g., `[edit]`, `[update]`), or extraneous annotations.  
-  2. **Remove Broken Links/Images**: Delete broken links, non-functional images, or media tags. Preserve valid links and images (e.g., Lund-04-Kathedrale-1975-gje.jpg).  
-  3. **Remove Citations/References**: Inline citations (e.g., `[1]`, `[citation needed]`) and entire reference sections (e.g., `## References`).  
-  4. **Remove Category Tags**: Wikipedia-style category tags (e.g., `Category:Basic English 850 words`).  
-  5. **Remove Related Pages Section**: Entire sections titled "Related Pages" or similar.  
-  6. **Remove Gallery Section**: Entire sections titled "Gallery" or similar, including image text (e.g., `Image:Saint Peter's Square.jpg`, `File:Transverse wave.png`).  
-  7. **Handle HTML/XML Tags**: Remove HTML/XML tags but keep meaningful text. Preserve structural tags like `<table>`, `<td>`, and attributes like `rowspan`, `colspan`.  
-  8. **Fix Redundant Whitespace**: Remove extra blank lines and unnecessary spaces, but preserve intentional spacing.  
-  9. **Preserve Everything Else**: Do not modify headings, lists, code blocks, tables, or any other content unless it violates the above rules.
+  1. **Remove Metadata**: Timestamps, non-content info (e.g., `[edit]`, `[update]`), or extraneous annotations.
+  2. **Remove Broken Links/Images**: Delete broken links, non-functional images, or media tags. Preserve valid links and images (e.g., Lund-04-Kathedrale-1975-gje.jpg).
+  3. **Remove Citations/References**: Inline citations (e.g., `[1]`, `[citation needed]`) and entire reference sections (e.g., `## References`).
+  4. **Remove Category Tags**: Wikipedia-style category tags (e.g., `Category:Basic English 850 words`).
+  5. **Remove Related Pages Section**: Entire sections titled "Related Pages" or similar.
+  6. **Remove Gallery Section**: Entire sections titled "Gallery" or similar, including image text (e.g., `Image:Saint Peter's Square.jpg`, `File:Transverse wave.png`).
+  7. **Handle HTML/XML Tags**: Remove HTML/XML tags but keep meaningful text. Preserve structural tags like `<table>`, `<td>`, and attributes like `rowspan`, `colspan`.
+  8. **Fix Redundant Whitespace**: Remove extra blank lines and unnecessary spaces, but preserve intentional spacing.
+  9. **Separate Titles with One Blank Line**: Ensure that all section titles (e.g., ## Title) are followed by at least one blank line to improve readability and consistency.
+  10. **Preserve Everything Else**: Do not modify headings, lists, code blocks, tables, or any other content unless it violates the above rules.
 
   ### Important:
   - **Be Faithful**: Copy the text exactly as-is unless one of the above rules applies.

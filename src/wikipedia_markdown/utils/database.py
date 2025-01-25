@@ -1,6 +1,6 @@
 import sqlite3
 from pathlib import Path
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List, Optional, Union
 
 
 def initialize_db(db_path: Union[str, Path]):
@@ -62,26 +62,36 @@ def get_all_ids(db_path: Union[str, Path]) -> List[int]:
 
 
 def get_ids_with_empty_llm_cleaned_text(
-    db_path: Union[str, Path], limit: int = None
+    db_path: Union[str, Path],
+    limit: Optional[int] = None,
+    max_markdown_tokens: Optional[int] = None,
 ) -> List[int]:
     """
-    Retrieve IDs of articles where the `llm_cleaned_text` column is empty or NULL.
+    Retrieve IDs of articles where `llm_cleaned_text` is empty or NULL,
+    and optionally where `markdown_text_tokens` is <= a specified value.
 
     Args:
         db_path (Union[str, Path]): Path to the SQLite database file.
-        limit (int, optional): Maximum number of rows to return. If None, returns all rows.
+        limit (int, optional): Max number of rows to return. If None, returns all.
+        max_markdown_tokens (int, optional): Max tokens allowed in
+            `markdown_text_tokens`. If None, no token limit is applied.
 
     Returns:
-        List[int]: List of article IDs where `llm_cleaned_text` is empty or NULL.
+        List[int]: List of article IDs where `llm_cleaned_text` is empty or NULL,
+            and optionally where `markdown_text_tokens` is <= `max_markdown_tokens`.
     """
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    # Base query to find rows where `llm_cleaned_text` is NULL or an empty string
+    # Base query to find rows where `llm_cleaned_text` is NULL or empty
     query = """
         SELECT id FROM articles
-        WHERE llm_cleaned_text IS NULL OR llm_cleaned_text = ''
+        WHERE (llm_cleaned_text IS NULL OR llm_cleaned_text = '')
     """
+
+    # Add condition for `markdown_text_tokens` if `max_markdown_tokens` is provided
+    if max_markdown_tokens is not None:
+        query += f" AND markdown_text_tokens <= {max_markdown_tokens}"
 
     # Add LIMIT clause if a limit is provided
     if limit is not None:
@@ -98,9 +108,7 @@ def get_ids_with_empty_llm_cleaned_text(
 
 
 def get_rows_from_ids(
-    db_path: Union[str, Path],
-    ids: List[int],
-    columns: List[str] = None
+    db_path: Union[str, Path], ids: List[int], columns: Optional[List[str]] = None
 ) -> List[Dict[str, Any]]:
     """
     Retrieve rows from the database for the given list of IDs.
@@ -108,7 +116,7 @@ def get_rows_from_ids(
     Args:
         db_path (Union[str, Path]): Path to the SQLite database file.
         ids (List[int]): List of article IDs to retrieve.
-        columns (List[str]): List of columns to retrieve. If None, retrieves all columns.
+        columns (List[str]): List of columns to retrieve. If None, retrieves all.
 
     Returns:
         List[Dict[str, Any]]: List of rows as dictionaries.
@@ -126,7 +134,7 @@ def get_rows_from_ids(
         "markdown_text_tokens",
         "model",
         "llm_cleaned_text",
-        "llm_cleaned_text_tokens"
+        "llm_cleaned_text_tokens",
     ]
 
     # If no columns are specified, select all columns
@@ -321,12 +329,14 @@ def update_markdown_text_batch(
     debug: bool = False,
 ) -> None:
     """
-    Update a batch of articles in the database with their Markdown text and token count.
+    Update a batch of articles in the database with their Markdown text and
+    token count.
 
     Args:
         db_path (Union[str, Path]): Path to the SQLite database file.
         articles (List[Dict]): List of articles to update, where each article is a
-                               dictionary with keys: id, markdown_text, markdown_text_tokens.
+                               dictionary with keys: id, markdown_text,
+                               markdown_text_tokens.
         debug (bool): If True, print debug messages (default: False).
     """
     conn = sqlite3.connect(db_path)

@@ -2,8 +2,6 @@
 **/.vscode/
 **/.idea/
 
-data/
-
 **/.ipynb_checkpoints/
 **/__pycache__/
 
@@ -18,3 +16,7 @@ venv.bak/
 
 # Package
 **/wikipedia_markdown.egg-info/
+
+# Outputs
+data/
+openai_batch_job_files/

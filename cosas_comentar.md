@@ -1,4 +1,4 @@
-Hay veces que el modelo va mal y se le va la olla. En tal caso, tengo que mirar aquellas filas que tengan menos 
+Hay veces que el modelo va mal y se le va la olla. En tal caso, tengo que mirar aquellas filas que tengan menos
 de un 90% de los tokens originales, ya que hay algo raro
 
 ---
@@ -25,3 +25,12 @@ Hay veces que el modelo te añade ```markdown``` al principio. Es por ello que h
 
 Si bien habiamos hecho una version inicial del prompt, lo cierto es que nos ibamos encontrando mas y mas cosas segun avanzabamos,
 asi que fuimos añadiendo puntos en el prompt y revisando manualmente los textos para encontrar patrones cons los que filtrar
+
+
+----
+
+Mientras usaba DeepSeek me encontre varias situaciones donde el modelo no iba bien y añadia ruido. Eran signos de que la API no iba bien
+Solia generar mas tokens de los que debia, metia texto que no era etc. No creo que estuviera tan relacionado con el modelo en si mismo sino mas con la infraestructura
+Quizas estaba teniendo over-use, ya que habia hecho muchas pruebas y no solia pasar
+
+Para evitar, hice revision manual y fui identificando articulos que claramente estaban mal con queries SQL, los borraba y seguia ejecutando

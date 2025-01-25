@@ -1,5 +1,5 @@
-# Note: We use the _iterate_articles in the parse_article method and not in the parse_all_articles
-# because we needed to modify the inner logic
+# Note: We use the _iterate_articles in the parse_article method and not in the
+# parse_all_articles because we needed to modify the inner logic
 
 import bz2
 import os
@@ -17,7 +17,11 @@ from dotenv import load_dotenv
 from tqdm import tqdm
 from transformers import AutoTokenizer, PreTrainedTokenizerFast
 
-from wikipedia_markdown.utils.database import initialize_db, insert_raw_text_batch, insert_raw_text_row
+from wikipedia_markdown.utils.database import (
+    initialize_db,
+    insert_raw_text_batch,
+    insert_raw_text_row,
+)
 from wikipedia_markdown.utils.tokenizer import count_tokens
 from wikipedia_markdown.utils.wiki_table import wiki_table_to_html
 from wikipedia_markdown.utils.yaml import load_yaml
@@ -367,7 +371,7 @@ def _count_pages_in_file(filename: Union[str, Path]) -> int:
 if __name__ == "__main__":
     # Define paths and target article ID
     base_path = Path("../../")
-    config = load_yaml(base_path / "run_config.yaml")
+    config = load_yaml(base_path / "config.yaml")
     file_path = base_path / config["data_folder"] / config["raw_file"]
     db_path = base_path / config["data_folder"] / config["db_file"]
     domain = "simple"
@@ -377,7 +381,10 @@ if __name__ == "__main__":
     # target_article_id = 44678 # Article with code blocks
     # target_article_id = 431  # canada table error
     # article = parse_article(
-    #     file_path=file_path, target_id=target_article_id, domain=domain, clean_text=True
+    #     file_path=file_path,
+    #     target_id=target_article_id,
+    #     domain=domain,
+    #     clean_text=True
     # )
     # if article:
     #     print(f"ID: {article['id']}")

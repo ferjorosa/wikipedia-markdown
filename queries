@@ -1,0 +1,34 @@
+-- Rows where the Category has not been removed
+
+select *
+from articles
+where llm_cleaned_text like '%Category:%'
+
+-- Rows that contain "[" (which is weird because there should not be any links)
+
+SELECT *
+FROM articles
+WHERE llm_cleaned_text LIKE '%[%';
+
+
+-- Check which articles dont start with a title
+
+SELECT *
+FROM articles
+WHERE llm_cleaned_text NOT LIKE '#%'
+  AND llm_cleaned_text NOT LIKE '\n#%'
+  AND llm_cleaned_text NOT LIKE '\n\n#%';
+
+-- Check which articles have weird number of tokens
+
+SELECT *
+FROM articles
+WHERE llm_cleaned_text_tokens > markdown_text_tokens * 1.20 -- 20% higher
+   OR llm_cleaned_text_tokens < markdown_text_tokens * 0.80; -- 20% lower
+
+
+-- Rows where model is OpenAI GPT-4o-mini
+
+select *
+from articles
+where model like '%openai/gpt-4o-mini%'
