@@ -20,3 +20,4 @@ venv.bak/
 # Outputs
 data/
 openai_batch_job_files/
+openai_batch_job_results/

@@ -22,3 +22,4 @@ domain_download: "simplewiki" # https://dumps.wikimedia.org/simplewiki/
 # OpenAI-batch
 openai_batch_job_size: 500
 openai_batch_job_files_path: "openai_batch_job_files"
+openai_batch_job_results_path: "openai_batch_job_results"

@@ -34,3 +34,9 @@ Solia generar mas tokens de los que debia, metia texto que no era etc. No creo q
 Quizas estaba teniendo over-use, ya que habia hecho muchas pruebas y no solia pasar
 
 Para evitar, hice revision manual y fui identificando articulos que claramente estaban mal con queries SQL, los borraba y seguia ejecutando
+
+-----
+
+OpenAI son gilipollas y solo ter pemiten 2MM de tokens a un modelo por organizaion, lo cual retrasa enormenente el desarrollo
+
+>>>>>>>>PANDA DE INCOMPETENTES
