@@ -6,11 +6,11 @@ raw_metadata_file: "download_metadata.json"
 prompts_file: "prompts.yaml"
 
 # Model names
-model_hf: "deepseek-ai/DeepSeek-V3"
-model_openrouter: "deepseek/deepseek-chat"
+#model_hf: "deepseek-ai/DeepSeek-V3"
+#model_openrouter: "deepseek/deepseek-chat"
 
-#model_openrouter: "openai/gpt-4o-mini"
-#model_hf: "Xenova/gpt-4o"
+model_openrouter: "openai/gpt-4o-mini"
+model_hf: "Xenova/gpt-4o"
 
 # Number of tokens per chunk (for processing long articles)
 max_tokens: 7000
@@ -20,6 +20,5 @@ domain: "simple" # https://simple.wikipedia.org/
 domain_download: "simplewiki" # https://dumps.wikimedia.org/simplewiki/
 
 # OpenAI-batch
-openai_batch_job_size: 500
-openai_batch_job_files_path: "openai_batch_job_files"
+openai_batch_tokens: 900000 # max is 2M, but wanted to make sure
 openai_batch_job_results_path: "openai_batch_job_results"
