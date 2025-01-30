@@ -32,3 +32,8 @@ WHERE llm_cleaned_text_tokens > markdown_text_tokens * 1.20 -- 20% higher
 select *
 from articles
 where model like '%openai/gpt-4o-mini%'
+
+
+-- Rows that have a line that starts with ";"
+
+-- Rows that have a line that starts with "*" and it is not followed by a space (i.e., badly formatted lists)

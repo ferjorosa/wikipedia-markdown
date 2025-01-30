@@ -2898,6 +2898,15 @@ wheels = [
 ]
 
 [[package]]
+name = "wikipedia-api"
+version = "0.8.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/b9/aa/2e35be124dfc7e581480705f912040172f6570cc12e68a245ba9258c32ef/wikipedia_api-0.8.1.tar.gz", hash = "sha256:b31e93b3f5407c1a1ba413ed7326a05379a3c270df6cf6a211aca67a14c5658b", size = 19934 }
+
+[[package]]
 name = "wikipedia-markdown"
 version = "0.1.0"
 source = { editable = "." }
@@ -2914,6 +2923,7 @@ dependencies = [
     { name = "requests" },
     { name = "tqdm" },
     { name = "transformers" },
+    { name = "wikipedia-api" },
     { name = "wikitextparser" },
 ]
 
@@ -2936,6 +2946,7 @@ requires-dist = [
     { name = "requests", specifier = ">=2.32.3" },
     { name = "tqdm", specifier = ">=4.67.1" },
     { name = "transformers", specifier = ">=4.47.1" },
+    { name = "wikipedia-api", specifier = ">=0.8.1" },
     { name = "wikitextparser", specifier = ">=0.56.3" },
 ]
 

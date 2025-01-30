@@ -2,20 +2,20 @@
 # parse_all_articles because we needed to modify the inner logic
 
 import bz2
-import os
+import os  # noqa F401
 import re
-import time
+import time  # noqa F401
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from os import getenv
+from os import getenv  # noqa F401
 from pathlib import Path
 from time import sleep
 from typing import Any, Dict, Iterator, Optional, Union
 
 import wikitextparser as wtp
 from bs4 import BeautifulSoup
-from dotenv import load_dotenv
+from dotenv import load_dotenv  # noqa F401
 from tqdm import tqdm
-from transformers import AutoTokenizer, PreTrainedTokenizerFast
+from transformers import AutoTokenizer, PreTrainedTokenizerFast  # noqa F401
 
 from wikipedia_markdown.utils.database import (
     initialize_db,
@@ -377,50 +377,48 @@ if __name__ == "__main__":
     domain = "simple"
 
     # Example 1: Fetch a specific article by ID and clean its text
-    # target_article_id = 3077 # Article with multiple tables
-    # target_article_id = 44678 # Article with code blocks
-    # target_article_id = 431  # canada table error
-    # article = parse_article(
-    #     file_path=file_path,
-    #     target_id=target_article_id,
-    #     domain=domain,
-    #     clean_text=True
-    # )
-    # if article:
-    #     print(f"ID: {article['id']}")
-    #     print(f"Title: {article['title']}")
-    #     print(f"URL: {article['url']}")
-    #     print(f"Parsed Text:\n{article['raw_text']}")
-    # else:
-    #     print(f"Article with ID {target_article_id} not found.")
+    target_article_id = 3077  # Article with multiple tables
+    target_article_id = 44678  # Article with code blocks
+    target_article_id = 431  # canada table error
+    target_article_id = 297239  # Tulle - article with plot
+    article = parse_article(
+        file_path=file_path, target_id=target_article_id, domain=domain, clean_text=True
+    )
+    if article:
+        print(f"ID: {article['id']}")
+        print(f"Title: {article['title']}")
+        print(f"URL: {article['url']}")
+        print(f"Parsed Text:\n{article['raw_text']}")
+    else:
+        print(f"Article with ID {target_article_id} not found.")
 
     # Example 2: Process all articles, clean their text, and save to DB
-    load_dotenv()
-    huggingface_token = getenv("HUGGINGFACE_TOKEN")
-    tokenizer = AutoTokenizer.from_pretrained(
-        config["model_hf"], token=huggingface_token
-    )
-    # Disable tokenizer parallelism (going to be called withing ThreadPool)
-    os.environ["TOKENIZERS_PARALLELISM"] = "false"
-
-    # Record the start time
-    start_time = time.perf_counter()
-
-    # Call the function
-    cpu_count = os.cpu_count() or 4
-    parse_articles(
-        file_path=file_path,
-        db_path=db_path,
-        domain=domain,
-        tokenizer=tokenizer,
-        clean_text=True,
-        max_workers=cpu_count - 1,
-        # batch_size=1000,
-    )
-
-    # Record the end time
-    end_time = time.perf_counter()
-
-    # Calculate and print the total time taken
-    time_taken = end_time - start_time
-    print(f"Time taken to execute: {time_taken:.2f} seconds")
+    # load_dotenv()
+    # huggingface_token = getenv("HUGGINGFACE_TOKEN")
+    # tokenizer = AutoTokenizer.from_pretrained(
+    #     config["model_hf"], token=huggingface_token
+    # )
+    # # Disable tokenizer parallelism (going to be called withing ThreadPool)
+    # os.environ["TOKENIZERS_PARALLELISM"] = "false"
+    #
+    # # Record the start time
+    # start_time = time.perf_counter()
+    #
+    # # Call the function
+    # cpu_count = os.cpu_count() or 4
+    # parse_articles(
+    #     file_path=file_path,
+    #     db_path=db_path,
+    #     domain=domain,
+    #     tokenizer=tokenizer,
+    #     clean_text=True,
+    #     max_workers=cpu_count - 1,
+    #     # batch_size=1000,
+    # )
+    #
+    # # Record the end time
+    # end_time = time.perf_counter()
+    #
+    # # Calculate and print the total time taken
+    # time_taken = end_time - start_time
+    # print(f"Time taken to execute: {time_taken:.2f} seconds")

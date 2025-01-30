@@ -40,3 +40,9 @@ Para evitar, hice revision manual y fui identificando articulos que claramente e
 OpenAI son gilipollas y solo ter pemiten 2MM de tokens a un modelo por organizaion, lo cual retrasa enormenente el desarrollo
 
 >>>>>>>>PANDA DE INCOMPETENTES
+
+-----
+
+Tema listas y GPT-4o-mini
+
+Sigue a veces "demasiado bien" las normas, añadiendo

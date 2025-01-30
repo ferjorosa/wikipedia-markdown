@@ -342,5 +342,5 @@ if __name__ == "__main__":
         max_output_tokens=config["max_tokens"],
         max_batch_tokens=config["openai_batch_tokens"],
         results_path=results_path,
-        max_batches=3,
+        max_batches=1,
     )

@@ -27,3 +27,17 @@ id: 8724 -> Kelvin
 * ...
 
 Podemos buscar que las lineas que empiecen por ";" se les elimine ese simbolo
+
+## Revisar que las listas estan bien formateadas
+
+He visto varios ejemplos donde empieza con "*" pero no le sigue un espacio, por lo que la lista queda mal
+
+## Hay lineas con plots que son un lio, deberia eliminarlo en post-process
+
+Por ejemplo, el articulo "Aurillac" https://simple.wikipedia.org/wiki/Aurillac
+
+## Revisar todos los tags de mediawiki y quitar/dejar los que tenga sentido
+
+Para ellos usamos BS4 y quitamos el contenido interior
+
+https://www.mediawiki.org/wiki/Parser_extension_tags
